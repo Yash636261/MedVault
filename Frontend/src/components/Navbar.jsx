@@ -1,9 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 function Navbar() {
-  const { user, loginWithRedirect, isAuthenticated, logout } = useAuth0();
+  const { user, loginWithRedirect, logout } = useAuth0();
   console.log("current user:", user);
 
   const [toggle, setToggle] = useState(false);
@@ -24,19 +25,19 @@ function Navbar() {
             src="https://img.icons8.com/?size=512&id=104233&format=png"
             alt=""
           />
-          <p className="my-auto">ProjectPulse</p>
+          <p className="my-auto">MedVault</p>
         </div>
         <div className="font-semibold capitalize max-md:hidden">
           <div className="flex justify-center cursor-pointer">
-            <a to="/" className="mx-3 hover:text-blue-300">
+            <Link to="/" className="mx-3 hover:text-blue-300">
               Home
-            </a>
+            </Link>
             <a to="/about" className="mx-3 hover:text-blue-300">
               about
             </a>
-            <a to="/contact" className="mx-3 hover:text-blue-300">
+            <Link to="/contact" className="mx-3 hover:text-blue-300">
             contact us
-            </a>
+            </Link>
             <div className="mx-3 hover:text-blue-300">explore</div>
           </div>
         </div>
@@ -63,19 +64,17 @@ function Navbar() {
             </button>
           </div>
           <div className="my-auto">
-            {isAuthenticated && (
-              <img onClick={changeMenu} src={user.picture} className="border-0 h-8 w-8 rounded-full  object-cover" alt="" />
-            )}
+              <img onClick={changeMenu} src="https://toppng.com/public/uploads/preview/user-account-management-logo-user-icon-11562867145a56rus2zwu.png" className="border-0 h-8 w-8 rounded-full  object-cover" alt="" />
+            
           </div>
 
           {menu && (
             <div className="absolute top-16 right-5 p-5 border-0 rounded-lg bg-black z-10">
-            {isAuthenticated && (
+            
               <div className="flex flex-col border-b-2 py-1 break-normal border-gray-500">
-                <p>{user.name}</p>
-                <p>{user.email}</p>
+                <p>name</p>
+                <p>email</p>
               </div>
-            )}
 
               <div className="capitalize flex flex-col py-2 w-48">
                 <a to="/profile" className="mx-2 my-1 hover:text-gray-300">
@@ -83,21 +82,18 @@ function Navbar() {
                 </a>
                 <div className="mx-2 my-1 hover:text-gray-300">settings </div>
 
-                {isAuthenticated ? (
                   <button
                     onClick={() => logout()}
                     className="bg-blue-600 transition duration-200 hover:bg-blue-700 border-0 rounded-md mx-2 my-1 py-1 hover:text-gray-300"
                   >
                     logout
                   </button>
-                ) : (
                   <button
                     onClick={()=> loginWithRedirect()}
                     className="bg-blue-600 transition duration-200 hover:bg-blue-700 border-0 rounded-md mx-2 my-1 py-1 hover:text-gray-300"
                   >
                     LogIn
                   </button>
-                )}
               </div>
             </div>
           )}
@@ -106,13 +102,13 @@ function Navbar() {
       {toggle && (
         <div className="absolute w-full bg-slate-800 text-white font-semibold md:hidden py-5">
           <div className="capitalize flex flex-col">
-            <a to="/" className="mx-3 my-1 hover:text-blue-300">
+            <Link to="/" className="mx-3 my-1 hover:text-blue-300">
               Home
-            </a>
+            </Link>
             <a to="/about" className="mx-3 my-1 hover:text-blue-300">
               about{" "}
             </a>
-            <div className="mx-3 my-1 hover:text-blue-300">contact us</div>
+            <Link to="/contact" className="mx-3 my-1 hover:text-blue-300">contact us</Link>
             <div className="mx-3 my-1 hover:text-blue-300">explore</div>
           </div>
         </div>
