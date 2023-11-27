@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useState } from "react";
+import { useState, useEffect,useRef } from "react";
 import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
@@ -9,12 +9,35 @@ function Navbar() {
 
   const [toggle, setToggle] = useState(false);
   const [menu, setMenu] = useState(false);
+  const dropdownRef = useRef(null);
+
   const changeToggle = () => {
     setToggle(!toggle);
   };
+
   const changeMenu = () => {
     setMenu(!menu);
   };
+
+  const closeMenu =() =>{
+    setMenu(false);
+  }
+
+  useEffect(()=>{
+    function handleClickOutside(event){
+      if(dropdownRef.current && !dropdownRef.current.contains(event.target)){
+        closeMenu();
+      }
+    }
+
+    document.addEventListener("mousedown",handleClickOutside);
+    return ()=>{
+      document.removeEventListener("mousedown",handleClickOutside);
+    };
+
+  },[]);
+
+
 
   return (
     <div className="fixed w-full z-10">
@@ -63,6 +86,9 @@ function Navbar() {
               </svg>
             </button>
           </div>
+
+          <div ref={dropdownRef}>
+            
           <div className="my-auto">
               <img onClick={changeMenu} src="https://toppng.com/public/uploads/preview/user-account-management-logo-user-icon-11562867145a56rus2zwu.png" className="border-0 h-8 w-8 rounded-full  object-cover" alt="" />
             
@@ -97,6 +123,7 @@ function Navbar() {
               </div>
             </div>
           )}
+          </div>
         </div>
       </div>
       {toggle && (

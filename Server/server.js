@@ -1,39 +1,39 @@
 // app.js (or server.js)
-require('dotenv').config()
+require("dotenv").config();
 
-const express = require('express');
+const express = require("express");
 const app = express();
-const cors = require('cors');
-const ProjectRouter = require('./routes/ProjectRoutes');
+const cors = require("cors");
+const PatientRouter = require("./routes/PatientRoutes"); // Updated route import
 
-const connectDB = require('./db/connect')
+const connectDB = require("./db/connect");
 
-const notFoundMiddleware = require('./middleware/not-found')
-const errorMiddleware = require('./middleware/error-handeler')
+const notFoundMiddleware = require("./middleware/not-found");
+const errorMiddleware = require("./middleware/error-handeler");
 
-//middleware
+// Middleware
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
-//routes
-app.get('/', (req, res) => {
-  res.send('<h1>Hello from the server!</h1> <a href="/api/v1/products">products route</a>');
+// Routes
+app.get("/", (req, res) => {
+  res.send('<h1>Hello from the server!</h1> <a href="/api/v1/patients">patients route</a>');
 });
 
-app.use("/api/project",ProjectRouter);
+app.use("/api/patient", PatientRouter); // Updated route path
 
-app.use(notFoundMiddleware)
-app.use(errorMiddleware)
+// app.use(notFoundMiddleware);
+app.use(errorMiddleware);
 
 const port = process.env.PORT || 5000;
 
-const start = async()=>{
+const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI)
-    app.listen(port,console.log(`server is listening of port ${port}`))
+    await connectDB(process.env.MONGO_URI);
+    app.listen(port, console.log(`Server is listening on port ${port}`));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 start();
