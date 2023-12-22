@@ -4,7 +4,7 @@ function Footer() {
   
   
           
-          <div className=" flex flex-col md:flex-row justify-around">
+          <div className=" flex flex-col md:flex-row justify-items-start md:px-10">
   
           <div className="flex flex-col font-bold cursor-default max-w-xs break-normal my-auto">
               <div className="flex mb-2">
@@ -13,28 +13,10 @@ function Footer() {
               </div>
                   <p className=" text-sm font-normal">Transforming Healthcare with Blockchain: Your Trusted Partner in Secure Health Data Management.</p>
           </div>
-  
-          <div className='text-sm py-5'>
-              <div className='capitalize'>
-                  <div className='my-2 mx-3 hover:text-gray-400'>Home</div>
-                  <div className='my-2 mx-3 hover:text-gray-400'>about</div>
-                  <div className='my-2 mx-3 hover:text-gray-400'>contact us</div>
-                  <div className='my-2 mx-3 hover:text-gray-400'>explore</div>
-              </div>
-          </div>
-  
-          <div className='text-sm py-5'>
-              <div className='capitalize'>
-                  <div className='my-2 mx-3 hover:text-gray-400'>Home</div>
-                  <div className='my-2 mx-3 hover:text-gray-400'>about</div>
-                  <div className='my-2 mx-3 hover:text-gray-400'>contact us</div>
-                  <div className='my-2 mx-3 hover:text-gray-400'>explore</div>
-              </div>
-          </div>
-  
+
           </div>
           <div className="flex flex-col text-center mt-10">
-              <p>made with ❤️ by devloper for devlopers.</p>
+              <p>made with ❤️ by engineer for doctors.</p>
           <p className="md:text-right"> © 2023 All Rights Reserved </p>
         </div>
         

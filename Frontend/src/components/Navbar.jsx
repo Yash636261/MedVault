@@ -23,6 +23,7 @@ function Navbar() {
     setMenu(false);
   }
 
+
   useEffect(()=>{
     function handleClickOutside(event){
       if(dropdownRef.current && !dropdownRef.current.contains(event.target)){
@@ -55,13 +56,13 @@ function Navbar() {
             <Link to="/" className="mx-3 hover:text-blue-300">
               Home
             </Link>
-            <a to="/about" className="mx-3 hover:text-blue-300">
+            {/* <a to="/about" className="mx-3 hover:text-blue-300">
               about
-            </a>
+            </a> */}
             <Link to="/contact" className="mx-3 hover:text-blue-300">
             contact us
             </Link>
-            <div className="mx-3 hover:text-blue-300">explore</div>
+            {/* <div className="mx-3 hover:text-blue-300">explore</div> */}
           </div>
         </div>
         <div className="relative flex">
@@ -106,6 +107,9 @@ function Navbar() {
                 <a to="/profile" className="mx-2 my-1 hover:text-gray-300">
                   Profile
                 </a>
+                <Link onClick={closeMenu} to="/patient" className="mx-2 my-1 hover:text-gray-300">
+                  patients
+                </Link>
                 <div className="mx-2 my-1 hover:text-gray-300">settings </div>
 
                   <button

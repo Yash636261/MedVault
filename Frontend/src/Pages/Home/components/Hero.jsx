@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom'
 import heroimage from '../../../assets/heroimage.png'
 
 function Hero() {
@@ -15,14 +16,14 @@ function Hero() {
             MedVault
             </p>
             <p className="text-md lg:text-lg mb-10">
-            Transforming Healthcare with Blockchain: Your Trusted Partner in Secure Health Data Management.
+            Transforming Healthcare : Your Trusted Partner in Secure Health Data Management.
             </p>
-            <a
+            <Link
               to='/login'
               className="bg-blue-500 hover:bg-blue-600 text-sm lg:text-lg text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105"
             >
               LogIn
-            </a>
+            </Link>
             </div>
 
           {/* Hero image */}

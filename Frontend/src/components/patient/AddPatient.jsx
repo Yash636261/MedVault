@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import plus_logo from "./../assets/img/dashboard/add2_pbl.png";
-import minus_logo from "./../assets/img/dashboard/minus2_pbl.png";
+import plus_logo from "../../assets/img/dashboard/add2_pbl.png";
+import minus_logo from "../../assets/img/dashboard/minus2_pbl.png";
 
 function AddPatient() {
   const [diseaseList, setDiseaseList] = useState([{ disease: "", yrs: "" }]);
@@ -107,12 +107,15 @@ function AddPatient() {
     }
   };
   return (
-    <div className="min-h-screen py-12 px-10 flex flex-col justify-center ">
+    <div className="min-h-screen py-12 px-10 flex flex-col justify-center bg-slate-900 text-white">
       <h1 className="text-center font-bold my-5 text-xl">Add Patient</h1>
-
+      {/* <dialog id="d">
+        <p>hi there</p>
+      </dialog>
+      <button onClick={d.showModal()}>dialong</button> */}
       <form
         onSubmit={handleSubmit}
-        className="font-poppins mx-auto lg:px-8 lg:py-4 bg-white shadow-lg rounded max-w-screen-lg mt-8 mb-4 "
+        className="font-poppins mx-auto lg:px-8 lg:py-4 bg-slate-800 shadow-lg rounded max-w-screen-lg mt-8 mb-4 "
       >
         <div className="lg:grid lg:grid-cols-4 lg:gap-2 mt-4 mr-4 grid grid-cols-4 gap-2">
           <label className="font-bold lg:text-xl font-poppins px-4 my-4 ">
@@ -120,7 +123,7 @@ function AddPatient() {
           </label>
           <div>
             <input
-              className="bg-blue-100 rounded lg:h-10 lg:pl-4 mt-4 lg:text-md text-sm h-8 px-2"
+              className="bg-gray-500 rounded lg:h-10 lg:pl-4 mt-4 lg:text-md text-sm h-8 px-2"
               required
               type="text"
               name="firstName"
@@ -131,7 +134,7 @@ function AddPatient() {
           </div>
 
           <input
-            className="bg-blue-100 rounded lg:h-10 lg:pl-4 mt-4 lg:text-md text-sm h-8 px-2"
+            className="bg-gray-500 rounded lg:h-10 lg:pl-4 mt-4 lg:text-md text-sm h-8 px-2"
             required
             type="text"
             name="lastName"
@@ -143,7 +146,7 @@ function AddPatient() {
         <div className="lg:grid grid-cols-4 gap-2 mt-4 mr-4">
           <label className="font-bold lg:text-xl px-4 ">Birthdate</label>
           <input
-            className=" bg-blue-100 lg:h-10 rounded pl-4 h-8"
+            className=" bg-gray-500 lg:h-10 rounded pl-4 h-8"
             required
             type="date"
             name="dateOfBirth"
@@ -157,7 +160,7 @@ function AddPatient() {
           <label className="font-bold lg:text-xl px-4 ">Gender</label>
 
           <select
-            className="pl-4 lg:w-3/4 bg-blue-100 lg:h-10  rounded  h-8"
+            className="pl-4 lg:w-3/4 bg-gray-500 lg:h-10  rounded  h-8"
             required
             name="gender"
             value={patient.gender}
@@ -172,7 +175,7 @@ function AddPatient() {
         <div className="grid grid-cols-4 gap-2 mt-4 mr-4">
           <label className="  lg:text-xl font-bold px-4">Blood Group</label>
           <select
-            className="pl-4 lg:w-1/2 bg-blue-100 lg:h-10  rounded  h-8"
+            className="pl-4 lg:w-1/2 bg-gray-500 lg:h-10  rounded  h-8"
             required
             name="bloodGroup"
             value={patient.bloodGroup}
@@ -195,7 +198,7 @@ function AddPatient() {
           <label className="font-bold lg:text-xl px-4 ">Email</label>
 
           <input
-            className="bg-blue-100 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
+            className="bg-gray-500 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
             required
             type="text"
             name="email"
@@ -208,7 +211,7 @@ function AddPatient() {
           <label className="font-bold lg:text-xl px-4 ">Phone</label>
 
           <input
-            className="bg-blue-100 rounded lg:h-10 lg:pl-4  lg:text-md text-sm h-8 px-2"
+            className="bg-gray-500 rounded lg:h-10 lg:pl-4  lg:text-md text-sm h-8 px-2"
             required
             type="text"
             name="phone"
@@ -221,7 +224,7 @@ function AddPatient() {
           <label className="font-bold lg:text-xl px-4 ">Street</label>
 
           <input
-            className="pl-4 bg-blue-100 lg:h-10  rounded h-8"
+            className="pl-4 bg-gray-500 lg:h-10  rounded h-8"
             required
             type="text"
             name="street"
@@ -234,7 +237,7 @@ function AddPatient() {
           <label className="font-bold lg:text-xl px-4 ">City</label>
 
           <input
-            className="bg-blue-100 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
+            className="bg-gray-500 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
             required
             type="text"
             name="city"
@@ -247,7 +250,7 @@ function AddPatient() {
           <label className="font-bold lg:text-xl px-4 ">State</label>
 
           <input
-            className="bg-blue-100 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
+            className="bg-gray-500 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
             required
             type="text"
             name="state"
@@ -260,7 +263,7 @@ function AddPatient() {
           <label className="font-bold lg:text-xl px-4 ">PostalCode</label>
 
           <input
-            className="bg-blue-100 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
+            className="bg-gray-500 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
             required
             type="text"
             name="postalCode"
@@ -284,7 +287,7 @@ function AddPatient() {
                         className="grid grid-cols-7 col-span-1 mb-3"
                       >
                         <input
-                          className="bg-blue-100 lg:h-10 col-span-3 rounded lg:pl-4 h-8 pl-2"
+                          className="bg-gray-500 lg:h-10 col-span-3 rounded lg:pl-4 h-8 pl-2"
                           type="text"
                           name="disease"
                           value={disease.disease}
@@ -299,7 +302,7 @@ function AddPatient() {
                           }}
                         />
                         <input
-                          className="bg-blue-100 lg:h-10 col-span-3  rounded lg:pl-4 h-8 pl-2 ml-4"
+                          className="bg-gray-500 lg:h-10 col-span-3  rounded lg:pl-4 h-8 pl-2 ml-4"
                           type="text"
                           name="yrs"
                           placeholder="years e.g 3"

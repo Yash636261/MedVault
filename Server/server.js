@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const PatientRouter = require("./routes/PatientRoutes"); // Updated route import
+const DoctorRouter = require("./routes/DoctorRoutes")
 
 const connectDB = require("./db/connect");
 
@@ -21,7 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/patient", PatientRouter); // Updated route path
-
+app.use("/api/doctor",DoctorRouter);
 // app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 

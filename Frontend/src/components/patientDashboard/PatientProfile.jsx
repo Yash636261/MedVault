@@ -26,7 +26,7 @@ const PatientProfile = (props) => {
     city: "",
     state: "",
     postalCode: "",
-    medicalRecords: [],
+    disease: [],
   });
 
   useEffect(() => {
@@ -70,9 +70,9 @@ const PatientProfile = (props) => {
   };
 
   return (
-    <body className="font-poppins col-span-10 h-screen overflow-y-scroll ">
+    <body className="font-poppins col-span-10 h-screen overflow-y-scroll bg-slate-900 ">
       <div className="flex mt-16">
-        <div className="p-4 m-8 bg-white shadow-md w-2/3 mx-auto rounded-md flex flex-col justify-center items-center overflow-hidden ">
+        <div className="p-4 m-8 bg-white shadow-md  mx-auto rounded-md flex flex-col justify-center items-center overflow-hidden ">
           <div className="flex justify-center">
             <img
               src={patient_card_profile}
@@ -81,31 +81,31 @@ const PatientProfile = (props) => {
             />
           </div>
           <div className="mt-6">
-            <div className="flex ml-8 ">
+            <div className="flex mx-8 ">
               <img src={name} className="h-8 w-8  " />
               <div className="flex mt-1">
                 <h2 className="ml-2">{patient.firstName}</h2>
                 <h2 className="ml-2">{patient.lastName}</h2>
               </div>
             </div>
-            <div className="flex ml-8 mt-4">
+            <div className="flex mx-8 mt-4">
               <img src={birth} className="h-5 w-5 ml-1" />
               <h2 className="ml-4">{convertDatetoString(patient.dateOfBirth)}</h2>
             </div>
-            <div className="flex ml-8 mt-4">
+            <div className="flex mx-8 mt-4">
               <img src={blood} className="h-6 w-6" />
               <h2 className="ml-4">{patient.bloodGroup}</h2>
             </div>
-            <div className="flex ml-8 mt-4">
+            <div className="flex mx-8 mt-4">
               <img src={phone} className="h-6 w-6 " />
               {/* <h2 className="ml-4">+91</h2> */}
               <h2 className="ml-2">{patient.phone}</h2>
             </div>
-            <div className="flex ml-8 mt-4">
+            <div className="flex mx-8 mt-4">
               <img src={mail} className="h-6 w-5 " />
               <h2 className="ml-4 ">{patient.email}</h2>
             </div>
-            <div className="flex ml-8 mt-4">
+            <div className="flex mx-8 mt-4">
               <img src={healthid} className="h-6 w-5 " />
               <h2 className="ml-4">{id}</h2>
             </div>
