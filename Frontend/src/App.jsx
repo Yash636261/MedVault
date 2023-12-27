@@ -11,8 +11,10 @@ import PatientDashboard from "./Pages/PatientDashboard.jsx";
 import PatientRecord from "./components/patient/PatientRecord.jsx";
 import AddMedicalRecord from "./components/patient/AddMedicalRecord.jsx";
 import AddDoctor from "./components/Doctor/AddDoctor.jsx";
-import DoctorDashboard from "./components/DoctorDashboard/DoctorDashboard.jsx";
-import Login from "./Pages/Login/Login.jsx";
+import DoctorDashboard from "./components/DoctorDashboard/DoctorProfile.jsx";
+import LoginPage from "./Pages/Login/LoginPage.jsx";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
+import DoctorProfile from "./components/DoctorDashboard/DoctorProfile.jsx";
 
 function App() {
   return (
@@ -24,15 +26,16 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/patient" element={<PatientList />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/add" element={<AddPatient />} />
+            <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="/addpatient" element={<AddPatient />} />
             <Route path="/patientRecord/:id" element={<PatientRecord/>}/>
             <Route path="/update/:id" element={<UpdatePatient />} />
             <Route path="/addRecord/:id" element={<AddMedicalRecord />} />
             <Route path="/dashboard/:id" element={<PatientDashboard />} />
             <Route path="/Profile/:id" element={<PatientProfile />} />
-            <Route path="/Doctor/:id" element={<DoctorDashboard />} />
-            
+            <Route path="/Profile/Doctor/:id" element={<DoctorProfile />} />
+            <Route path="/Admin" element={<AdminDashboard />} />
+
 
             <Route path="/addDoctor" element={<AddDoctor/>} />
             

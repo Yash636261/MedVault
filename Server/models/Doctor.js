@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const doctorSchema = new mongoose.Schema({
   firstName: {
@@ -37,6 +38,10 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   state: {
     type: String,
     required: true,
@@ -47,11 +52,13 @@ const doctorSchema = new mongoose.Schema({
   },
   specialization: [
     {
-      special: {
-        type: String,
-      },
+        type: Array,
     },
   ],
+  role: {
+    type: String,
+    default:"user"
+  }
 });
 
 

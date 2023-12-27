@@ -2,30 +2,44 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function AddDoctor() {
-  const [doctor, setDoctor] = useState({
+  const initialDoctorState = {
     firstName: "",
     lastName: "",
     dateOfBirth: "",
-    contact: "",
     gender: "",
+    contact: "",
     email: "",
-    bloodGroup: " ",
+    bloodGroup: "",
     street: "",
     city: "",
+    password: "",
     state: "",
     postalCode: "",
-    specialization: "",
-    // Add more fields as needed
-  });
+    specialization: [], // Change to array
+  };
+
+  const [doctor, setDoctor] = useState(initialDoctorState);
   const [errors, setErrors] = useState({});
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setDoctor((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (name === "specialization") {
+      // Split the input value by comma to create an array
+      const specialties = value.split(",");
+      setDoctor((prevData) => ({
+        ...prevData,
+        [name]: specialties,
+      }));
+    } else {
+      setDoctor((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
+
 
   const validateForm = () => {
     console.log(doctor);
@@ -61,14 +75,16 @@ function AddDoctor() {
       errors.bloodGroup = "blood group is required";
     }
 
-
-
     if (!doctor.street.trim()) {
       errors.street = "Street is required";
     }
 
     if (!doctor.city.trim()) {
       errors.city = "City is required";
+    }
+
+    if (!doctor.password.trim()) {
+      errors.password = "password is required";
     }
 
     if (!doctor.state.trim()) {
@@ -78,23 +94,30 @@ function AddDoctor() {
     if (!doctor.postalCode.trim()) {
       errors.postalCode = "Postal Code is required";
     }
-    
+
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      try {
-        const response = await axios.post(
-          "http://localhost:5000/api/doctor/adddoctor",
-          doctor
-        );
-        console.log("doctor Added:", response.data);
-      } catch (error) {
-        console.error("Error adding doctor:", error);
+    setPasswordError("");
+    if (doctor.password === confirmPassword) {
+      if (validateForm()) {
+        try {
+          const response = await axios.post(
+            "http://localhost:5000/api/doctor/adddoctor",
+            doctor
+          );
+          setDoctor(initialDoctorState);
+          setConfirmPassword("");
+          console.log("doctor Added:", response.data);
+        } catch (error) {
+          console.error("Error adding doctor:", error);
+        }
       }
+    } else {
+      setPasswordError("Password Doesn't Matches");
     }
   };
   return (
@@ -207,6 +230,36 @@ function AddDoctor() {
             onChange={handleChange}
           />
         </div>
+
+        <div className="lg:grid grid-cols-4 gap-2 mt-4 mr-4">
+          <label className="font-bold lg:text-xl px-4 ">Password</label>
+
+          <input
+            className="bg-gray-500 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
+            required
+            type="password"
+            name="password"
+            placeholder="password"
+            value={doctor.password}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="lg:grid grid-cols-4 gap-2 mt-4 mr-4">
+          <label className="font-bold lg:text-xl px-4 ">Confirm Password</label>
+
+          <input
+            className="bg-gray-500 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
+            required
+            type="password"
+            name="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <span className="text-sm py-1 text-red-500">{passwordError}</span>
+        </div>
+
         <div className="lg:grid grid-cols-4 gap-2 mt-4 mr-4">
           <label className="font-bold lg:text-xl px-4 ">Street</label>
 
@@ -259,44 +312,46 @@ function AddDoctor() {
             onChange={handleChange}
           />
         </div>
-        <div className="lg:grid grid-cols-4 gap-2 mt-4 mr-4">
+        <div className="lg:grid grid-cols-4 gap-2 mt-4 mr-4 mb-10">
           <label className="font-bold lg:text-xl px-4 ">Specialization</label>
 
           <input
-            className="bg-gray-500 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
-            required
-            type="text"
-            name="specialization"
-            placeholder="specialization"
-            // value={doctor.postalCode}
-            // onChange={handleChange}
-          />
+  className="bg-gray-500 rounded lg:h-10 lg:pl-4 lg:text-md text-sm h-8 px-2"
+  required
+  type="text"
+  name="specialization"
+  placeholder="specialization (comma-separated)"
+  value={doctor.specialization.join(",")} // Join array values with a comma
+  onChange={handleChange}
+/>
+
         </div>
 
-
         {errors.firstName && (
-          <p className="text-xs text-red-500">{errors.firstName}</p>
+          <p className="text-md text-red-500">{errors.firstName}</p>
         )}
         {errors.lastName && (
-          <p className="text-xs text-red-500">{errors.lastName}</p>
+          <p className="text-md text-red-500">{errors.lastName}</p>
         )}
         {errors.dateOfBirth && (
-          <p className="text-xs text-red-500">{errors.dateOfBirth}</p>
+          <p className="text-md text-red-500">{errors.dateOfBirth}</p>
         )}
         {errors.bloodGroup && (
-          <p className="text-xs text-red-500">{errors.bloodGroup}</p>
+          <p className="text-md text-red-500">{errors.bloodGroup}</p>
         )}
         {errors.gender && (
-          <p className="text-xs text-red-500">{errors.gender}</p>
+          <p className="text-md text-red-500">{errors.gender}</p>
         )}
-        {errors.contact && <p className="text-xs text-red-500">{errors.phone}</p>}
+        {errors.contact && (
+          <p className="text-md text-red-500">{errors.contact}</p>
+        )}
         {errors.street && (
-          <p className="text-xs text-red-500">{errors.street}</p>
+          <p className="text-md text-red-500">{errors.street}</p>
         )}
-        {errors.city && <p className="text-xs text-red-500">{errors.city}</p>}
-        {errors.state && <p className="text-xs text-red-500">{errors.state}</p>}
+        {errors.city && <p className="text-md text-red-500">{errors.city}</p>}
+        {errors.state && <p className="text-md text-red-500">{errors.state}</p>}
         {errors.postalCode && (
-          <p className="text-xs text-red-500">{errors.postalCode}</p>
+          <p className="text-md text-red-500">{errors.postalCode}</p>
         )}
         {/* Button to add patient */}
         <button

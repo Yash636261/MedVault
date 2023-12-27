@@ -11,7 +11,8 @@ function AddPatient() {
     diseaseList1.push({ disease: "", yrs: "" });
     setDiseaseList(diseaseList1);
   };
-  const [patient, setPatient] = useState({
+
+  const initialState ={
     firstName: "",
     lastName: "",
     dateOfBirth: "",
@@ -25,7 +26,8 @@ function AddPatient() {
     postalCode: "",
     diseases: diseaseList,
     // Add more fields as needed
-  });
+  }
+  const [patient, setPatient] = useState(initialState);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -100,6 +102,7 @@ function AddPatient() {
           "http://localhost:5000/api/patient/addpatient",
           patientData
         );
+        setPatient(initialState);
         console.log("patient Added:", response.data);
       } catch (error) {
         console.error("Error adding patient:", error);

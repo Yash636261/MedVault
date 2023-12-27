@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
@@ -19,26 +19,22 @@ function Navbar() {
     setMenu(!menu);
   };
 
-  const closeMenu =() =>{
+  const closeMenu = () => {
     setMenu(false);
-  }
+  };
 
-
-  useEffect(()=>{
-    function handleClickOutside(event){
-      if(dropdownRef.current && !dropdownRef.current.contains(event.target)){
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         closeMenu();
       }
     }
 
-    document.addEventListener("mousedown",handleClickOutside);
-    return ()=>{
-      document.removeEventListener("mousedown",handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-
-  },[]);
-
-
+  }, []);
 
   return (
     <div className="fixed w-full z-10">
@@ -60,7 +56,7 @@ function Navbar() {
               about
             </a> */}
             <Link to="/contact" className="mx-3 hover:text-blue-300">
-            contact us
+              contact us
             </Link>
             {/* <div className="mx-3 hover:text-blue-300">explore</div> */}
           </div>
@@ -89,28 +85,34 @@ function Navbar() {
           </div>
 
           <div ref={dropdownRef}>
-            
-          <div className="my-auto">
-              <img onClick={changeMenu} src="https://toppng.com/public/uploads/preview/user-account-management-logo-user-icon-11562867145a56rus2zwu.png" className="border-0 h-8 w-8 rounded-full  object-cover" alt="" />
-            
-          </div>
+            <div className="my-auto">
+              <img
+                onClick={changeMenu}
+                src="https://toppng.com/public/uploads/preview/user-account-management-logo-user-icon-11562867145a56rus2zwu.png"
+                className="border-0 h-8 w-8 rounded-full  object-cover"
+                alt=""
+              />
+            </div>
 
-          {menu && (
-            <div className="absolute top-16 right-5 p-5 border-0 rounded-lg bg-black z-10">
-            
-              <div className="flex flex-col border-b-2 py-1 break-normal border-gray-500">
-                <p>name</p>
-                <p>email</p>
-              </div>
+            {menu && (
+              <div className="absolute top-16 right-5 p-5 border-0 rounded-lg bg-black z-10">
+                <div className="flex flex-col border-b-2 py-1 break-normal border-gray-500">
+                  <p>name</p>
+                  <p>email</p>
+                </div>
 
-              <div className="capitalize flex flex-col py-2 w-48">
-                <a to="/profile" className="mx-2 my-1 hover:text-gray-300">
-                  Profile
-                </a>
-                <Link onClick={closeMenu} to="/patient" className="mx-2 my-1 hover:text-gray-300">
-                  patients
-                </Link>
-                <div className="mx-2 my-1 hover:text-gray-300">settings </div>
+                <div className="capitalize flex flex-col py-2 w-48">
+                  <a to="/profile" className="mx-2 my-1 hover:text-gray-300">
+                    Profile
+                  </a>
+                  <Link
+                    onClick={closeMenu}
+                    to="/patient"
+                    className="mx-2 my-1 hover:text-gray-300"
+                  >
+                    patients
+                  </Link>
+                  <div className="mx-2 my-1 hover:text-gray-300">settings </div>
 
                   <button
                     onClick={() => logout()}
@@ -119,14 +121,14 @@ function Navbar() {
                     logout
                   </button>
                   <button
-                    onClick={()=> loginWithRedirect()}
+                    onClick={() => loginWithRedirect()}
                     className="bg-blue-600 transition duration-200 hover:bg-blue-700 border-0 rounded-md mx-2 my-1 py-1 hover:text-gray-300"
                   >
                     LogIn
                   </button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
           </div>
         </div>
       </div>
@@ -136,11 +138,9 @@ function Navbar() {
             <Link to="/" className="mx-3 my-1 hover:text-blue-300">
               Home
             </Link>
-            <a to="/about" className="mx-3 my-1 hover:text-blue-300">
-              about{" "}
-            </a>
-            <Link to="/contact" className="mx-3 my-1 hover:text-blue-300">contact us</Link>
-            <div className="mx-3 my-1 hover:text-blue-300">explore</div>
+            <Link to="/contact" className="mx-3 my-1 hover:text-blue-300">
+              contact us
+            </Link>
           </div>
         </div>
       )}

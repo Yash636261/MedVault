@@ -1,8 +1,10 @@
 function Contact() {
     return (
-      <div className="bg-slate-900 py-20  text-white">
+      <div className=" py-20  text-black" style={{
+        background: "linear-gradient(90deg, rgba(131, 126, 226, 1) 24%, rgba(114, 114, 226, 1) 58%, rgba(0, 212, 255, 1) 100%)"
+      }}>
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col bg-slate-900 p-5 border-0 rounded-xl">
+          <div className="flex flex-col p-5 border-0 rounded-xl">
             <div className=" my-10">
               <h1 className=" capitalize text-3xl md:text-6xl text-center mb-5">
                 We'd love to hear from you

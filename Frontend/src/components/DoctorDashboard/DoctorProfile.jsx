@@ -2,21 +2,16 @@
 import patient_card_profile from "../../assets/img/dashboard/admin-card-profile.png";
 import name from "../../assets/img/dashboard/patient-profile-name.png";
 import birth from "../../assets/img/dashboard/patient-profile-birth.png";
-import address from "../../assets/img/dashboard/patient-profile-address.png";
 import phone from "../../assets/img/dashboard/patient-profile-phone.png";
 import mail from "../../assets/img/dashboard/patient-profile-mail.png";
 import blood from "../../assets/img/dashboard/patient-profile-blood.png";
-import hospital from "../../assets/img/dashboard/doctor-profile-hospital.png";
-import hospital_contact from "../../assets/img/dashboard/doctor-profile-contact.png";
-import speciality from "../../assets/img/dashboard/doctor-profile-speciality.png";
-import degree from "../../assets/img/dashboard/doctor-profile-degree.png";
 import home from "../../assets/img/dashboard/doctor-profile-home.png";
 import { useEffect, useState } from "react";
 import { useParams , Link} from "react-router-dom";
 import axios from "axios";
 
 
-const DoctorDashboard = () => {
+const DoctorProfile = () => {
     const {id} = useParams();
   const [doctor, setDoctor] = useState({
     firstName: "",
@@ -142,4 +137,4 @@ const DoctorDashboard = () => {
   );
 };
 
-export default DoctorDashboard;
+export default DoctorProfile;
