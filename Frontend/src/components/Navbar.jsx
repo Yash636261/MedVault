@@ -85,16 +85,16 @@ function Navbar() {
           </div>
 
           <div ref={dropdownRef}>
-            <div className="my-auto">
+            {/* <div className="my-auto">
               <img
                 onClick={changeMenu}
                 src="https://toppng.com/public/uploads/preview/user-account-management-logo-user-icon-11562867145a56rus2zwu.png"
                 className="border-0 h-8 w-8 rounded-full  object-cover"
                 alt=""
               />
-            </div>
+            </div> */}
 
-            {menu && (
+            {/* {menu && (
               <div className="absolute top-16 right-5 p-5 border-0 rounded-lg bg-black z-10">
                 <div className="flex flex-col border-b-2 py-1 break-normal border-gray-500">
                   <p>name</p>
@@ -128,7 +128,7 @@ function Navbar() {
                   </button>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

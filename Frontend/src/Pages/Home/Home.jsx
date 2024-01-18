@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "./components/Hero";
 import Intro from "./components/Intro";
 import Footer from "../../components/Footer";
+import FAQ from "./components/FAQ";
 function Home() {
   return (
     <div>
@@ -12,6 +13,7 @@ function Home() {
           <Hero />
         </div>
         <Intro />
+        <FAQ  />
       </div>
       <Footer />
     </div>

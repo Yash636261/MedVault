@@ -16,7 +16,7 @@ exports.login = async(req,res)=>{
 
     console.log(admin);
 
-    // const match = await comparePassword(password, admin.password);
+    const match = await comparePassword(password, admin.password);
     if(password === admin.password){
       console.log('success');
     }else{
@@ -41,7 +41,7 @@ exports.doclogin = async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials. Please try again.' });
     }
 
-    // const match = await comparePassword(password, doctor.password);
+     const match = await comparePassword(password, doctor.password);
     if(password === doctor.password){
       console.log('success');
     }else{

@@ -25,7 +25,7 @@ const DoctorProfile = () => {
     city: "",
     state: "",
     postalCode: "",
-    specialization: "",
+    specialization: [],
   });
 
   const convertDatetoString = (dateString) => {
@@ -105,6 +105,18 @@ const DoctorProfile = () => {
                   {`${doctor.street},  ${doctor.city}, ${doctor.state}-${doctor.postalCode}`}
                 </h2>
               </div>
+            </div>
+          </div>
+
+          <div className="p-8 m-2 bg-white shadow-md w-2/3 rounded-md mt-10">
+            <h1 className="font-bold flex justify-center text-xl">Specialization</h1>
+            <div className="flex mt-4 ">
+              {/* Mapping through doctor's specialization array */}
+              {doctor.specialization.map((specialization, index) => (
+                <span key={index} className="text-lg mr-2">
+                  {specialization}
+                </span>
+              ))}
             </div>
           </div>
           {/* <div className="p-8 m-2 bg-white shadow-md w-2/3 rounded-md mt-10">
