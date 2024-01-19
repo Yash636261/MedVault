@@ -8,6 +8,7 @@ import patientListImg from "../../assets/img/dashboard/patient_list.png";
 import doctorListImg from "../../assets/img/dashboard/doctor_list.png";
 import Statscard from "../comp/cards/Statscard";
 import Dropbox from "../comp/Dropbox";
+import PatientChart from "../comp/PatientChart";
 
 const AdminDashboard = () => {
   const [selectedOption, setSelectedOption] = useState("patient");
@@ -40,7 +41,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="pt-12 bg-gray-100 font-poppins">
-      <div className="fixed border-0 rounded-xl ml-2 my-2 w-14 transition duration-800 bg-white h-full">
+      {/* <div className="fixed border-0 rounded-xl ml-2 my-2 w-14 transition duration-800 bg-white h-full">
         <div className="flex flex-col justify-center items-center font-bold font-poppins my-4 h-full">
           <button
             onClick={() => handleOptionChange("patient")}
@@ -59,9 +60,9 @@ const AdminDashboard = () => {
             </div>
           </button>
         </div>
-      </div>
-      <div className="flex text-black bg-gray-100 shadow-xl pl-24">
-        <div className="w-full min-h-screen  transition duration-800 px-2 lg:px-16 pt-24">
+      </div> */}
+      <div className="flex text-black bg-gray-100 pl-24 max-w-lg">
+        <div className="min-h-screen  transition duration-800 px-2 lg:px-16 pt-24">
           <h1 className=" text-3xl font-semibold p-2">Welcome</h1>
           <div className="flex gap-3 py-8">
             <Statscard title="Total" patients="293" />
@@ -70,13 +71,13 @@ const AdminDashboard = () => {
             <Statscard title="Pediatrics" patients="104" />
           </div>
           <div>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-row justify-between items-center">
               <h1 className="text-xl font-semibold p-2 text-gray-600">
                 Numbers
               </h1>
               <Dropbox />
             </div>
-            <div className="border-0 rounded-lg p-5 bg-white my-2">
+            <div className="flex bg-white p-5 my-2 border-0 rounded-lg">
               <div>
                 <h4 className="text-gray-600 font-semibold text-sm">
                   TOTAL PATIENTS PER DAY
@@ -104,13 +105,12 @@ const AdminDashboard = () => {
                   STATS
                 </a>
               </div>
+              <PatientChart />
             </div>
           </div>
           <PatientList />
         </div>
-        <div className="w-96">
-          <DoctorList />
-        </div>
+        <DoctorList />
       </div>
     </div>
   );
