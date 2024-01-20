@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import PatientList from "../patient/PatientList";
-import { Link } from "react-router-dom";
 import DoctorList from "../Doctor/DoctorList";
-import patientListImg from "../../assets/img/dashboard/patient_list.png";
-import doctorListImg from "../../assets/img/dashboard/doctor_list.png";
 import Statscard from "../comp/cards/Statscard";
-import Dropbox from "../comp/Dropbox";
-import PatientChart from "../comp/PatientChart";
+import Dropbox from "../comp/DashBoard/Dropbox";
+import PatientChart from "../comp/DashBoard/PatientChart";
+import DashNav from "../comp/DashBoard/DashNav";
+import RightSidebar from "../comp/DashBoard/RightSidebar";
 
 const AdminDashboard = () => {
-  const [selectedOption, setSelectedOption] = useState("patient");
   const [admin, setAdmin] = useState({
     firstName: "",
     lastName: "",
@@ -19,17 +17,12 @@ const AdminDashboard = () => {
     email: "",
   });
 
-  const handleOptionChange = (option) => {
-    setSelectedOption(option);
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "http://localhost:5000/api/admin/getadmin"
         );
-        console.log(response.data);
         setAdmin(response.data);
       } catch (error) {
         console.error("Error fetching admin", error);
@@ -40,28 +33,9 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <div className="pt-12 bg-gray-100 font-poppins">
-      {/* <div className="fixed border-0 rounded-xl ml-2 my-2 w-14 transition duration-800 bg-white h-full">
-        <div className="flex flex-col justify-center items-center font-bold font-poppins my-4 h-full">
-          <button
-            onClick={() => handleOptionChange("patient")}
-            className="text-gray-400 mt-1 border-0 rounded-xl my-2"
-          >
-            <div className="w-10 bg-white  hover:bg-gray-100 p-2 border-0 rounded-lg">
-              <img src={patientListImg} alt="patient-list" />
-            </div>
-          </button>
-          <button
-            onClick={() => handleOptionChange("doctor")}
-            className="text-gray-400 border-0 rounded-xl my-2"
-          >
-            <div className="w-10 bg-white  hover:bg-gray-100  p-2 border-0 rounded-lg">
-              <img src={doctorListImg} alt="doctor-list" />
-            </div>
-          </button>
-        </div>
-      </div> */}
-      <div className="flex text-black bg-gray-100 pl-24 max-w-lg">
+    <div className="flex bg-gray-100 font-poppins">
+      <DashNav/>
+      <div className="flex text-black bg-gray-100 pl-24 ">
         <div className="min-h-screen  transition duration-800 px-2 lg:px-16 pt-24">
           <h1 className=" text-3xl font-semibold p-2">Welcome</h1>
           <div className="flex gap-3 py-8">
@@ -110,8 +84,8 @@ const AdminDashboard = () => {
           </div>
           <PatientList />
         </div>
-        <DoctorList />
       </div>
+      <RightSidebar admin={admin}/>
     </div>
   );
 };

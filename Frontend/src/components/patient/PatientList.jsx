@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Dropbox from "../comp/Dropbox";
+import Dropbox from "../comp/DashBoard/Dropbox";
+import more from "../../assets/more.png";
+import profile from "../../assets/img/landingPage/profile.png";
+import history from "../../assets/img/dashboard/history_patient.png";
 
 function PatientList() {
   const [patients, setPatients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isOpen, setOpen] = useState(false);
+  const toggle = () => {
+    setOpen(!isOpen);
+  };
 
   useEffect(() => {
     // Fetch patient data from the backend
@@ -47,45 +54,125 @@ function PatientList() {
         </div>
       </div>
       <div className="flex justify-between items-center">
-      <input
-        type="text"
-        placeholder="Search by name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="bg-white text-gray-800 px-4 py-2 rounded-md  w-full max-w-md"
-      />
-      
-      <Link
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="bg-white text-gray-800 px-4 py-2 rounded-md  w-full max-w-md"
+        />
+
+        <Link
           to="/addpatient"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+          className=" bg-blue-400 text-black px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white transition duration-300"
         >
           Add Patient
         </Link>
-
       </div>
-      <div className="flex flex-wrap -mx-4">
+      <div className="w-full">
         {filteredPatients.map((patient) => (
-          <div key={patient._id} className="w-full md:w-1/2 lg:w-1/3 p-4">
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300">
-              <Link to={`/Profile/${patient._id}`} className="block p-4">
-                <h2 className="text-lg font-semibold text-gray-800">
+          <div
+            key={patient._id}
+            className="flex justify-between items-center w-full px-4 py-6 my-6 bg-white rounded-lg hover:shadow-md"
+          >
+            <div className="flex items-center w-48 overflow-hidden">
+              <Link to={`/Profile/${patient._id}`} className="">
+                <img
+                  src={profile}
+                  alt=""
+                  className="w-10 h-10 border-0 rounded-full"
+                />
+              </Link>
+              <div className="px-2">
+                <h5 className="text-xs font-semibold text-gray-400">
+                  70 years old
+                </h5>
+                <h2 className="text-md font-semibold text-gray-800 capitalize">
                   {patient.firstName} {patient.lastName}
                 </h2>
-              </Link>
-              <div className="flex justify-between items-center p-4 border-t border-gray-200">
-                <Link
-                  to={`/patientRecord/${patient._id}`}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                >
-                  Records
-                </Link>
-                <button
-                  onClick={() => deletePatient(patient._id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300"
-                >
-                  Delete
-                </button>
               </div>
+            </div>
+
+            <div className="flex justify-center items-center">
+              <img
+                src={history}
+                alt=""
+                className="w-8 h-8 p-1 border-0 rounded-lg bg-gray-100"
+              />
+              <div className="px-2">
+                <h5 className="text-xs font-semibold text-gray-400">
+                  Admitted:
+                </h5>
+                <h2 className="text-sm font-semibold text-gray-800 capitalize">
+                  19/12/23
+                </h2>
+              </div>
+            </div>
+
+            <div className="flex justify-center items-center">
+              <img
+                src={history}
+                alt=""
+                className="w-8 h-8 p-1 border-0 rounded-lg bg-gray-100"
+              />
+              <div className="px-2">
+                <h5 className="text-xs font-semibold text-gray-400">
+                  ward:
+                </h5>
+                <h2 className="text-sm font-semibold text-gray-800 capitalize">
+                  Cardiology
+                </h2>
+              </div>
+            </div>
+
+            <div className="flex justify-center items-center">
+              <img
+                src={history}
+                alt=""
+                className="w-8 h-8 p-1 border-0 rounded-lg bg-gray-100"
+              />
+              <div className="px-2">
+                <h5 className="text-xs font-semibold text-gray-400">
+                  Doctor:
+                </h5>
+                <h2 className="text-sm font-semibold text-gray-800 capitalize">
+                  Smit Patel
+                </h2>
+              </div>
+            </div>
+
+            <div className="relative">
+              <img
+                onClick={toggle}
+                className=" w-8 h-8 border rounded-full p-1 hover:border-black transition duration-200"
+                src={more}
+                alt=""
+              />
+
+              {isOpen && (
+                <div
+                  className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="menu-button"
+                >
+                  <div className="py-1" role="none">
+                    {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
+                    <Link
+                      to={`/patientRecord/${patient._id}`}
+                      className="text-gray-700 block px-4 py-2 text-sm"
+                    >
+                      Records
+                    </Link>
+                    <Link
+                      onClick={() => deletePatient(patient._id)}
+                      className="text-gray-700 block px-4 py-2 text-sm"
+                    >
+                      Delete
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}

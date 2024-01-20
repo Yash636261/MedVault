@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth",authRoutes);
 app.use("/api/patient", PatientRouter); // Updated route path
 app.use("/api/doctor",DoctorRouter);
-app.use(AdminRouter);
+app.use("/api/admin",AdminRouter);
 app.use(logoutRoute);
 // app.use(notFoundMiddleware);
 app.use(errorMiddleware);
