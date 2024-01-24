@@ -52,7 +52,7 @@ function Intro() {
   ];
 
   return (
-    <div className=" text-black py-28 max-md:py-1 px-5 bg-gray-100">
+    <div className=" text-black pt-28 pb-5 max-md:py-1 px-5 bg-gray-100">
       <h1 className="text-3xl font-semibold text-black text-center my-20 font-mono">
         About
       </h1>

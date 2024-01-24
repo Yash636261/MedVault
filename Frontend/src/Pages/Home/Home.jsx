@@ -6,7 +6,7 @@ import FAQ from "./components/FAQ";
 import Navbar from "../../components/Navbar.jsx";
 function Home() {
   return (
-    <div>
+    <div className="bg-gray-100">
       <div id="home" className=" pb-10 ">
         <div >
           <Hero />

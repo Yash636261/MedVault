@@ -21,7 +21,7 @@ function Hero() {
         </div>
       </div>
       <div className="flex md:flex-row items-center justify-between h-full max-md:py-32">
-        <div className="md:w-1/2 text-center md:text-left md:px-20 mx-auto">
+        <div className="md:w-1/2 text-center md:text-left md:px-20 px-5 mx-auto">
           <h1 className="text-4xl md:text-5xl font-semibold leading-tight mb-4">
             MedVault
           </h1>
@@ -29,7 +29,7 @@ function Hero() {
             Empowering Healthcare: Your Reliable Partner in Secure Health Data
             Management.
           </p>
-          <Link to="/login" className="text-gray-700 flex items-center">
+          <Link to="/login" className="text-gray-700 flex items-center max-md:justify-center max-md:py-10">
             Log In
             <img className="w-8 ml-1" src={arrow} alt="" />
           </Link>
