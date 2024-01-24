@@ -9,9 +9,13 @@ import history from "../../assets/img/dashboard/history_patient.png";
 function PatientList() {
   const [patients, setPatients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isOpen, setOpen] = useState(false);
-  const toggle = () => {
-    setOpen(!isOpen);
+  const [isOpen, setOpen] = useState(null);
+  const toggle = (index) => {
+    if (isOpen === index) {
+      setOpen(null);
+    } else {
+      setOpen(index);
+    }
   };
 
   useEffect(() => {
@@ -70,7 +74,7 @@ function PatientList() {
         </Link>
       </div>
       <div className="w-full">
-        {filteredPatients.map((patient) => (
+        {filteredPatients.map((patient,index) => (
           <div
             key={patient._id}
             className="flex justify-between items-center w-full px-4 py-6 my-6 bg-white rounded-lg hover:shadow-md"
@@ -143,13 +147,13 @@ function PatientList() {
 
             <div className="relative">
               <img
-                onClick={toggle}
+                onClick={() => toggle(index)}
                 className=" w-8 h-8 border rounded-full p-1 hover:border-black transition duration-200"
                 src={more}
                 alt=""
               />
 
-              {isOpen && (
+              {isOpen == index && (
                 <div
                   className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                   role="menu"

@@ -42,7 +42,7 @@ const FAQ = () => {
 
   return (
     <div className="max-w-3xl mx-auto mt-10">
-      <h1 className="text-3xl font-bold mb-5">Frequently Asked Questions</h1>
+    <h1 className="text-3xl font-semibold text-black text-center my-20">Frequently Asked Questions</h1>
       <div className="divide-y divide-gray-300">
         {faqs.map((faq, index) => (
           <div key={index} className="py-3">

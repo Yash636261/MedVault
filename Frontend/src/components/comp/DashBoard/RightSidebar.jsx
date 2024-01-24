@@ -91,7 +91,7 @@ function RightSidebar(props) {
           href=""
           className="text-xs py-2 px-44 my-2 w-full border-0 rounded-lg bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-black font-semibold"
         >
-          STATS
+          MANAGE
         </a>
       </div>
     </div>
