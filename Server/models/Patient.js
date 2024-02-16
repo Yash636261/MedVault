@@ -50,6 +50,13 @@ const patientSchema = new mongoose.Schema({
       disease: {
         type: String,
       },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+      doctor: {
+        type: String,
+      },
       yrs: {
         type: Number,
       },

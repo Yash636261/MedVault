@@ -14,6 +14,7 @@ import DoctorDashboard from "./components/DoctorDashboard/DoctorProfile.jsx";
 import LoginPage from "./Pages/Login/LoginPage.jsx";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 import DoctorProfile from "./components/DoctorDashboard/DoctorProfile.jsx";
+import NotFound from "./Pages/NotFound/NotFound.jsx";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
 
 
             <Route path="/addDoctor" element={<AddDoctor/>} />
+            <Route path="*" element={<NotFound/>} />
             
           </Routes>
         </div>

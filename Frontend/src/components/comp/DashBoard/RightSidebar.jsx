@@ -46,9 +46,8 @@ function RightSidebar(props) {
   };
 
   return (
-    <div className="max-w-md bg-white min-h-screen w-full">
+    <div className="h-full w-72 bg-white min-h-screen">
       <div className="broder-gray-200 py-5 my-2 w-full flex items-center px-8 shadow-md">
-        {/* <Link to={`/Profile/${admin._id}`} className=""> */}
         <Link>
           <img
             src={Doctor}
@@ -87,12 +86,14 @@ function RightSidebar(props) {
             </div>
           </div>
         ))}
-        <a
-          href=""
-          className="text-xs py-2 px-44 my-2 w-full border-0 rounded-lg bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-black font-semibold"
-        >
-          MANAGE
-        </a>
+        <div className="flex justify-center"> {/* Center the button */}
+          <a
+            href=""
+            className="text-xs py-2  w-full text-center my-2 border-0 rounded-lg bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-black font-semibold"
+          >
+            MANAGE
+          </a>
+        </div>
       </div>
     </div>
   );

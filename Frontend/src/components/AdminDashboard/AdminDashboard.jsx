@@ -33,9 +33,9 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <div className="flex bg-gray-100 font-poppins">
-      <DashNav/>
-      <div className="flex text-black bg-gray-100 pl-24 ">
+    <div className="flex justify-evenly bg-white font-poppins">
+      {/* <DashNav/> */}
+      <div className="flex text-black bg-gray-100 ">
         <div className="min-h-screen  transition duration-800 px-2 lg:px-16 pt-24">
           <h1 className=" text-3xl font-semibold p-2">Welcome</h1>
           <div className="flex gap-3 py-8">
@@ -85,7 +85,9 @@ const AdminDashboard = () => {
           <PatientList />
         </div>
       </div>
-      <RightSidebar admin={admin}/>
+      <div className=" sticky">
+        <RightSidebar admin={admin} />
+      </div>
     </div>
   );
 };
