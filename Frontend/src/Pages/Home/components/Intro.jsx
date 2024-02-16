@@ -57,7 +57,7 @@ function Intro() {
         About
       </h1>
       <div className="flex max-lg:flex-col justify-around items-center">
-        <div className=" my-10 max-w-md md:px-10">
+        <div className=" my-10 lg:max-w-md md:px-10">
           <h1 className="text-3xl font-bold text-left mb-4">
             What is MedVault?
           </h1>
