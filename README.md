@@ -36,8 +36,10 @@ MedVault is an advanced patient data management system designed to ensure data s
   <pre><code>cd Server</pre></code>
   <pre><code>npm install</pre></code>
   <pre><code>npm run server</pre></code>
+- create a .env file in Server folder:
+  <pre><code>MONGO_URI =paste your MongoURI here.</pre></code>
    
-3. **Open in Browser**: Visit `http://localhost:3000` in your browser to view the application.
+3. **Open in Browser**: Visit `http://localhost:5173/` in your browser to view the application.
 
 ## Contributing
 
