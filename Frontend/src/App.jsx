@@ -16,6 +16,8 @@ import AdminDashboard from "./components/AdminDashboard/AdminDashboard.jsx";
 import DoctorProfile from "./components/DoctorDashboard/DoctorProfile.jsx";
 import NotFound from "./Pages/NotFound/NotFound.jsx";
 
+import Test from "./Pages/Test/Test.jsx";
+
 function App() {
   return (
     <Router>
@@ -34,9 +36,9 @@ function App() {
             <Route path="/Profile/:id" element={<PatientProfile />} />
             <Route path="/Profile/Doctor/:id" element={<DoctorProfile />} />
             <Route path="/Admin" element={<AdminDashboard />} />
-
-
             <Route path="/addDoctor" element={<AddDoctor/>} />
+
+            <Route path='/test' element={<Test/>}/>
             <Route path="*" element={<NotFound/>} />
             
           </Routes>
