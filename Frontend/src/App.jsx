@@ -17,6 +17,7 @@ import DoctorProfile from "./components/DoctorDashboard/DoctorProfile.jsx";
 import NotFound from "./Pages/NotFound/NotFound.jsx";
 
 import Test from "./Pages/Test/Test.jsx";
+import DoctorList from "./components/Doctor/DoctorList.jsx";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/patient" element={<PatientList />}></Route>
+            <Route path="/doctor" element={<DoctorList />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/addpatient" element={<AddPatient />} />
             <Route path="/patientRecord/:id" element={<PatientRecord/>}/>

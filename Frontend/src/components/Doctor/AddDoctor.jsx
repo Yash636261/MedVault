@@ -105,7 +105,7 @@ function AddDoctor() {
       if (validateForm()) {
         try {
           const response = await axios.post(
-            "http://localhost:5000/api/doctor/adddoctor",
+            "http://localhost:5000/api/auth/adddoctor",
             doctor
           );
           setDoctor(initialDoctorState);
