@@ -2,6 +2,8 @@ const Admin = require("../models/Admin");
 const Doctor = require("../models/Doctor");
 const Patient = require("../models/Patient");
 const { comparePassword, hashPassword } = require("./../helpers/authHelper");
+const { createToken } = require("../utils/createToken");
+const bcrypt = require("bcrypt");
 
 exports.login = async (req, res) => {
   try {
@@ -39,19 +41,13 @@ exports.doclogin = async (req, res) => {
         .status(401)
         .json({ error: "Invalid credentials. Please try again." });
     }
-
-    const match = await comparePassword(password, doctor.password);
-    if (password === doctor.password) {
-      console.log("success");
-    } else {
-      return res.status(401).send({
-        success: false,
-        message: "Invalid Password",
-      });
+    const auth = await bcrypt.compare(password, doctor.password);
+    if (!auth) {
+      return res.status(401).json({ error: "Invalid credentials" });
     }
-
-    // Passwords match, login successful
-    res.status(200).json({ message: "Login successful!", doctor });
+    const token =createToken(doctor._id);
+    res.cookie("token", token, { withcredentials: true, httpOnly: false });
+    res.status(201).json({ message: "Login successful!", doctor,sucess:true, token});
   } catch (error) {
     console.error("Error logging in doctor:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -97,8 +93,8 @@ exports.doctorSignup = async (req, res) => {
       specialization,
     });
     const token = createToken(doctor._id);
-    res.cookie("token", token, { withcredentials: true, httpOnly: true });
-    res.status(201).json(doctor);
+    res.cookie("token", token, { withcredentials: true, httpOnly: false });
+    res.status(201).json({doctor,success: true, token});
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Server error:" });
