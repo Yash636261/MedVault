@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import heroimage from "../../../assets/heroimage.png";
+import heroimage from "../../../assets/heroimage.webp";
 import arrow from "../../../assets/Rarrow.svg";
 import { AuthContext } from "../../../components/Auth/AuthContext";
 

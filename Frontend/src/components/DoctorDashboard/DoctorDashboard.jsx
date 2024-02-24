@@ -1,5 +1,5 @@
-import { useState, useEffect,useContext } from "react";
-import { useParams, Link} from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 import PatientList from "../patient/PatientList";
@@ -76,18 +76,19 @@ const DoctorDashboard = () => {
         <div className="min-h-screen transition duration-800 px-2 lg:px-16 pt-24 ml-16">
           <div className="flex justify-between px-2 items-center">
             <h1 className="text-3xl font-semibold">Welcome</h1>
-            <div className="py-5 my-2 flex items-center">
-              <Link>
+
+            <Link to={`/profile/doctor/${doctor._id}`}>
+              <div className="py-5 my-2 flex items-center">
                 <img
                   src={Doctor}
                   alt="Doctor Icon"
                   className="w-10 h-10 border-0 rounded-full"
                 />
-              </Link>
-              <h2 className="text-sm px-2 font-semibold text-gray-800 capitalize">
-                Dr. {doctor.firstName} {doctor.lastName}
-              </h2>
-            </div>
+                <h2 className="text-sm px-2 font-semibold text-gray-800 capitalize">
+                  Dr. {doctor.firstName} {doctor.lastName}
+                </h2>
+              </div>
+            </Link>
           </div>
           <div className="flex flex-wrap gap-3 py-8">
             <Statscard title="Total" patients="293" />

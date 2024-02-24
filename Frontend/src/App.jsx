@@ -29,11 +29,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/doctor" element={<DoctorList />} />
-            <Route path="/addpatient" element={<AddPatient />} />
-            <Route path="/update/:id" element={<UpdatePatient />} />
-            <Route path="/addRecord/:id" element={<AddMedicalRecord />} />
-            <Route path="/dashboard/:id" element={<PatientDashboard />} />
-            <Route path="/Profile/:id" element={<PatientProfile />} />
             <Route path="/Admin" element={<AdminDashboard />} />
             <Route path="/addDoctor" element={<AddDoctor />} />
             <Route path="/login" element={<LoginPage />} />
@@ -42,7 +37,15 @@ function App() {
               <Route path="/patient" element={<PatientList />} />
               <Route path="/Profile/Doctor/:id" element={<DoctorProfile />} />
               <Route path="/patientRecord/:id" element={<PatientRecord />} />
-              <Route path="/doctorDashboard/:id" element={<DoctorDashboard />} />
+              <Route
+                path="/doctorDashboard/:id"
+                element={<DoctorDashboard />}
+              />
+              <Route path="/update/:id" element={<UpdatePatient />} />
+              <Route path="/addpatient" element={<AddPatient />} />
+              <Route path="/addRecord/:id" element={<AddMedicalRecord />} />
+              <Route path="/dashboard/:id" element={<PatientDashboard />} />
+              <Route path="/Profile/:id" element={<PatientProfile />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

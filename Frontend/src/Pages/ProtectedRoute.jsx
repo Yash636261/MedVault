@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Outlet, useLocation, Link, Navigate } from "react-router-dom";
+import { Outlet ,Navigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 export default function ProtectedRoute() {
@@ -21,7 +20,6 @@ export default function ProtectedRoute() {
     }
   } catch (error) {
     console.error("Error in PrivateRoutes:", error);
-    // Render fallback UI or error message
     return <p>Oops! Something went wrong.</p>;
   }
 }

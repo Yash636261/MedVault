@@ -3,23 +3,19 @@ import Cookies from "universal-cookie";
 
 const AuthContext = createContext();
 
-function AuthProvider({children}) {
+function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
   const cookies = new Cookies();
-  const[localtoken,setlocalToken]=useState(null);
-
-  // Function to save token to localStorage
+  
   const saveTokenToLocalStorage = (jwtToken) => {
     localStorage.setItem("authToken", jwtToken);
   };
 
-  // Function to retrieve token from localStorage on page load
   const getTokenFromLocalStorage = () => {
     return localStorage.getItem("authToken");
   };
 
-  // Check token in localStorage on initial mount
   useEffect(() => {
     const storedToken = getTokenFromLocalStorage();
     if (storedToken) {
@@ -32,9 +28,6 @@ function AuthProvider({children}) {
     console.log("setting token");
     setIsLoggedIn(true);
     setToken(jwtToken);
-
-
-    // Save the token to localStorage
     saveTokenToLocalStorage(jwtToken);
   };
 
@@ -42,10 +35,7 @@ function AuthProvider({children}) {
     console.log("hi");
     setIsLoggedIn(false);
     setToken(null);
-    
     cookies.remove("TOKEN");
-
-    // Clear the token from localStorage
     localStorage.removeItem("authToken");
   };
 

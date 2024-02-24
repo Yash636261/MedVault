@@ -1,16 +1,16 @@
-import {useState} from 'react'
+// import {useState} from 'react'
 import { Link } from "react-router-dom";
 import patientListImg from "../../../assets/img/dashboard/patient_list.png";
 import doctorListImg from "../../../assets/img/dashboard/doctor_list.png";
-import Op from "../../../assets/Open.svg"
+// import Op from "../../../assets/Open.svg"
 import Home from "../../../assets/Home.svg"
 
 function DashNav() {
-    const [isOpen,setOpen]=useState(false);
+    // const [isOpen,setOpen]=useState(false);
 
-    const Open =()=>{
-        setOpen(!isOpen);
-    }
+    // const Open =()=>{
+    //     setOpen(!isOpen);
+    // }
   return (
     
     <div className="fixed left-0 border-0 rounded-xl ml-2 my-2 w-14 transition duration-800 bg-gray-100 h-screen">

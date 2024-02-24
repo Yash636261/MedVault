@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import loginimg from "../../assets/d1.png";
 import back from "../../assets/img/dashboard/logout.png";
@@ -35,7 +35,7 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       if (selectedOption === "admin") {
-        const response = await axios.post(
+        await axios.post(
           `http://localhost:5000/api/auth/login`,
           { ...formData }
         );

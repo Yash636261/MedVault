@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 
 function AddMedicalRecord() {
   const { id } = useParams();
   const [patient, setPatient] = useState({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: "",
-    gender: "",
-    bloodGroup: "",
-    email: "",
-    phone: "",
-    street: "",
-    city: "",
-    state: "",
-    postalCode: "",
     diseases: [],
   });
 
@@ -72,6 +61,11 @@ function AddMedicalRecord() {
     }
   };
 
+  const cancel = (e) => {
+    e.preventDefault();
+    window.history.back();
+  };
+
   return (
     <div className="min-h-screen py-12 px-10 flex flex-col justify-center bg-white">
       {/* Your form */}
@@ -86,9 +80,9 @@ function AddMedicalRecord() {
                   i
                 </div>
                 <div className="block pl-2 font-semibold text-xl self-start text-gray-700">
-                  <h2 className="leading-relaxed">Add a diseases</h2>
+                  <h2 className="leading-relaxed">Add a disease</h2>
                   <p className="text-sm text-gray-500 font-normal leading-relaxed">
-                    Add a new disease to the patient's medical record
+                    Add a new disease to the patient&apos;s medical record
                   </p>
                 </div>
               </div>
@@ -192,7 +186,7 @@ function AddMedicalRecord() {
                     </div> */}
                   </div>
                   <div className="pt-4 flex items-center space-x-4">
-                    <button className="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
+                    <button className="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" onClick={(e)=> cancel(e)}>
                       <svg
                         className="w-6 h-6 mr-3"
                         fill="none"
@@ -201,9 +195,6 @@ function AddMedicalRecord() {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
                           d="M6 18L18 6M6 6l12 12"
                         ></path>
                       </svg>{" "}
