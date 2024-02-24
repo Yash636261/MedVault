@@ -13,24 +13,24 @@ function DashNav() {
     }
   return (
     
-    <div className="fixed border-0 rounded-xl ml-2 my-2 w-14 transition duration-800 bg-white h-screen">
+    <div className="fixed left-0 border-0 rounded-xl ml-2 my-2 w-14 transition duration-800 bg-gray-100 h-screen">
     <div className={`relative flex flex-col justify-center items-center font-bold font-poppins my-4 h-full `}>
-      <button className="absolute w-8 -right-4 bg-white border-0 p-1 rounded-r-full" onClick={Open} >
+      {/* <button className="absolute w-8 -right-4 bg-gray-100 border-0 p-1 rounded-r-full" onClick={Open} >
         <img src={Op} alt="" />
-      </button>
+      </button> */}
       <Link
         to="/"
-        className="text-gray-400 mt-1 my-2 w-10 bg-white  hover:bg-gray-100 p-2 border-0 rounded-lg"
+        className="text-gray-400 mt-1 my-2 w-10 bg-gray-100  hover:bg-white p-2 border-0 rounded-lg"
       >
-      <img src={Home} alt="" />
+      <img src={Home} alt="Home" />
       </Link>
       <button
-        className="text-gray-400 mt-1 my-2 w-10 bg-white  hover:bg-gray-100 p-2 border-0 rounded-lg"
+        className="text-gray-400 mt-1 my-2 w-10 bg-gray-100  hover:bg-white p-2 border-0 rounded-lg"
       >
         <img src={patientListImg} alt="patient-list" />
       </button>
       <button
-        className="text-gray-400 mt-1 my-2 w-10 bg-white  hover:bg-gray-100 p-2 border-0 rounded-lg"
+        className="text-gray-400 mt-1 my-2 w-10 bg-gray-100  hover:bg-white p-2 border-0 rounded-lg"
       >
         <img src={doctorListImg} alt="doctor-list" />
       </button>

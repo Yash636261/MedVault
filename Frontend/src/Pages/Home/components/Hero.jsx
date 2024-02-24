@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import heroimage from "../../../assets/heroimage.png";
-import arrow from '../../../assets/Rarrow.svg';
+import arrow from "../../../assets/Rarrow.svg";
+import { AuthContext } from "../../../components/Auth/AuthContext";
 
 function Hero() {
+  const { isLoggedIn, logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <div className="relative text-black md:h-screen bg-gray-100  overflow-hidden">
       <div className="absolute flex max-md:justify-around items-center w-full px-10 py-5">
@@ -29,19 +36,28 @@ function Hero() {
             Empowering Healthcare: Your Reliable Partner in Secure Health Data
             Management.
           </p>
-          <Link to="/login" className="text-gray-700 flex items-center max-md:justify-center max-md:py-10">
-            Log In
-            <img className="w-8 ml-1" src={arrow} alt="" />
-          </Link>
+          {!isLoggedIn ? (
+            <Link
+              to="/login"
+              className="text-gray-700 flex items-center max-md:justify-center max-md:py-10"
+            >
+              Log In
+              <img className="w-8 ml-1" src={arrow} alt="" />
+            </Link>
+          ) : (
+            <button
+              onClick={handleLogout}
+              className="text-gray-700 flex items-center max-md:justify-center max-md:py-10"
+            >
+              Log Out
+              <img className="w-8 ml-1" src={arrow} alt="" />
+            </button>
+          )}
         </div>
 
         {/* Hero image */}
-        <div className="md:w-1/2 max-md:hidden h-full bg-gray-500 flex justify-center items-center overflow-hidden">
-          <img
-            className="w-full"
-            src={heroimage}
-            alt="profileimage"
-          />
+        <div className="md:w-1/2 max-md:hidden h-full bg-[#54707E] flex justify-center items-center overflow-hidden">
+          <img className="w-full" src={heroimage} alt="profileimage" />
         </div>
       </div>
     </div>

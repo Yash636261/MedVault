@@ -1,10 +1,12 @@
 import { createContext, useState, useEffect } from "react";
+import Cookies from "universal-cookie";
 
 const AuthContext = createContext();
 
 function AuthProvider({children}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
+  const cookies = new Cookies();
   const[localtoken,setlocalToken]=useState(null);
 
   // Function to save token to localStorage
@@ -31,13 +33,17 @@ function AuthProvider({children}) {
     setIsLoggedIn(true);
     setToken(jwtToken);
 
+
     // Save the token to localStorage
     saveTokenToLocalStorage(jwtToken);
   };
 
   const logout = () => {
+    console.log("hi");
     setIsLoggedIn(false);
     setToken(null);
+    
+    cookies.remove("TOKEN");
 
     // Clear the token from localStorage
     localStorage.removeItem("authToken");

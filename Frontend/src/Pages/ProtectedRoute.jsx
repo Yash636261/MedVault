@@ -1,26 +1,23 @@
-import React from "react";
-import { Outlet, useLocation, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Outlet, useLocation, Link, Navigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 export default function ProtectedRoute() {
   try {
-    console.log("Checking");
+    // console.log("Checking");
     const cookies = new Cookies();
     const token = cookies.get("TOKEN");
     // alert("Checking");
     if (token) {
       // alert(token);
       return (
-      <>
-        <Outlet />
-      </>);
-    } else {
-    //   const location = useLocation();
-      return (
-        <div className="h-full bg-black">
-          <h1>something went wrong.</h1>
-        </div>
+        <>
+          <Outlet />
+        </>
       );
+    } else {
+      //   const location = useLocation();
+      return <Navigate to="/login" />;
     }
   } catch (error) {
     console.error("Error in PrivateRoutes:", error);

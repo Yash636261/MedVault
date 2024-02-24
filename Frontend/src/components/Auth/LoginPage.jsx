@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import profile from "../../assets/img/landingPage/profile.png";
 import loginimg from "../../assets/d1.png";
 import back from "../../assets/img/dashboard/logout.png";
-import ReactLoading from "react-loading";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
@@ -50,17 +48,19 @@ export default function LoginPage() {
             withCredentials: true,
           }
         );
-        if(response){
+
+        if (response) {
           console.log(response.data.token);
           localStorage.setItem("authToken", response.data.token);
           login(response.data.token);
 
           cookies.set("TOKEN", response.data.token, {
             path: "/",
-          })
+          });
         }
         console.log(cookies.get("TOKEN"));
-        navigate("/patient");
+        const id = response.data.doctor._id;
+        navigate(`/doctorDashboard/${id}`);
       }
     } catch (error) {
       console.log(error);
