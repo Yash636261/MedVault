@@ -34,12 +34,11 @@ exports.login = async (req, res) => {
 exports.doclogin = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const doctor = await Doctor.findOne({ email });
     if (!doctor) {
       return res
-        .status(401)
-        .json({ error: "Invalid credentials. Please try again." });
+        .status(404)
+        .json({ error: "User doesn't exists." });
     }
     const auth = await bcrypt.compare(password, doctor.password);
     if (!auth) {
@@ -100,54 +99,3 @@ exports.doctorSignup = async (req, res) => {
     res.status(500).json({ error: "Server error:" });
   }
 };
-
-// exports.registerDoctor = async (req, res) => {
-//   try {
-//     const {
-//       firstName,
-//       lastName,
-//       dateOfBirth,
-//       contact,
-//       gender,
-//       email,
-//       bloodGroup,
-//       street,
-//       city,
-//       password,
-//       state,
-//       postalCode,
-//       specialization,
-//     } = req.body;
-
-//     // Check if doctor with the same email already exists
-//     const existingDoctor = await Doctor.findOne({ email });
-//     if (existingDoctor) {
-//       return res.status(400).json({ error: 'Doctor with this email already exists.' });
-//     }
-
-//     // Create a new doctor
-//     const newDoctor = new Doctor({
-//       firstName,
-//       lastName,
-//       dateOfBirth,
-//       contact,
-//       gender,
-//       email,
-//       bloodGroup,
-//       street,
-//       city,
-//       password,
-//       state,
-//       postalCode,
-//       specialization,
-//     });
-
-//     // Save the doctor to the database
-//     await newDoctor.save();
-
-//     res.status(201).json({ message: 'Doctor registered successfully!', doctor: newDoctor });
-//   } catch (error) {
-//     console.error('Error registering doctor:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// };

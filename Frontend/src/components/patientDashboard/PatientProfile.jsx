@@ -1,12 +1,6 @@
 // import Footer from "../landingPage/Footer";
-import patient_card_profile from "../../assets/img/dashboard/admin-card-profile.png";
-import name from "../../assets/img/dashboard/patient-profile-name.png";
-import birth from "../../assets/img/dashboard/patient-profile-birth.png";
-import address from "../../assets/img/dashboard/patient-profile-address.png";
-import phone from "../../assets/img/dashboard/patient-profile-phone.png";
-import mail from "../../assets/img/dashboard/patient-profile-mail.png";
-import blood from "../../assets/img/dashboard/patient-profile-blood.png";
-import healthid from "../../assets/img/dashboard/patient-profile-healthid.png";
+
+import profile from "../../assets/img/landingPage/profile.png";
 import { useNavigate,useParams ,Link } from "react-router-dom";
 import { useEffect, useState} from "react";
 import axios from "axios";
@@ -71,47 +65,106 @@ const PatientProfile = (props) => {
 
   return (
     
-    <div className="font-poppins col-span-10 h-screen overflow-y-scroll" style={{
-      background: "linear-gradient(90deg, rgba(131, 126, 226, 1) 24%, rgba(114, 114, 226, 1) 58%, rgba(0, 212, 255, 1) 100%)"
-    }}>
-      <div className="flex mt-16 justify-center">
-        <div className="p-4 px-10 m-8 bg-white shadow-md mx-auto rounded-md flex flex-col justify-center items-center overflow-hidden">
-          <div className="flex justify-center">
-            <img
-              src={patient_card_profile}
-              className="h-40 w-40 rounded-full border-2 p-4"
-              alt="patient-profile"
-            />
+    
+    <div className="h-full p-8 bg-gray-100">
+      <div className="pb-8 bg-white rounded-lg shadow-xl max-w-6xl mx-auto">
+        <div className="w-full h-[250px]">
+          <img
+            src="https://i.stack.imgur.com/vhoa0.jpg"
+            className="w-full h-full rounded-tl-lg rounded-tr-lg"
+            width={500}
+            height={500}
+          />
+        </div>
+        <div className="flex flex-col ml-10 -mt-20 items-left">
+          <img
+            src={profile}
+            className="w-40 border-4 border-white rounded-full bg-white"
+            width={100}
+            height={100}
+          />
+          <p className="text-2xl">
+            {patient.firstName} {patient.lastName}
+          </p>
+
+          <p className="text-gray-700">{patient.email}</p>
+        </div>
+        <div className="flex-1 flex flex-col items-start justify-end px-8 mt-2">
+          <div className="flex items-center space-x-4 mt-2">
+            <Link to={`/update/${patient._id}`} className="flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+              <span>Edit</span>
+            </Link>
           </div>
-          <div className="mt-6">
-            <div className="flex mx-8 items-center">
-              <img src={name} className="h-8 w-8" />
-              <h2 className="ml-2 text-lg font-semibold">{patient.firstName} {patient.lastName}</h2>
-            </div>
-            <div className="flex mx-8 mt-4 items-center">
-              <img src={birth} className="h-5 w-5" />
-              <h2 className="ml-4">{convertDatetoString(patient.dateOfBirth)}</h2>
-            </div>
-            <div className="flex mx-8 mt-4 items-center">
-              <img src={blood} className="h-6 w-6" />
-              <h2 className="ml-4">{patient.bloodGroup}</h2>
-            </div>
-            <div className="flex mx-8 mt-4 items-center">
-              <img src={phone} className="h-6 w-6" />
-              <h2 className="ml-2">{patient.phone}</h2>
-            </div>
-            <div className="flex mx-8 mt-4 items-center">
-              <img src={mail} className="h-6 w-5" />
-              <h2 className="ml-4">{patient.email}</h2>
-            </div>
-            <div className="flex mx-8 mt-4 items-center">
-              <img src={healthid} className="h-6 w-5" />
-              <h2 className="ml-4">{id}</h2>
-            </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col my-4 space-y-4 2xl:flex-row 2xl:space-y-0 2xl:space-x-4 max-w-6xl mx-auto">
+        <div className="flex flex-col w-full 2xl:w-1/3">
+          <div className="flex-1 p-8 bg-white rounded-lg shadow-xl">
+            <h4 className="text-xl font-bold text-gray-900">Personal Info</h4>
+            <ul className="mt-2 text-gray-700">
+              <li className="flex py-2 border-y">
+                <span className="w-24 font-bold">Full name </span>
+                <span className="text-gray-700">
+                  {patient.firstName} {patient.lastName}
+                </span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Birthday:</span>
+                <span className="text-gray-700">
+                  {convertDatetoString(patient.dateOfBirth)}
+                </span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">bloodGroup:</span>
+                <span className="text-gray-700"> {patient.bloodGroup}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Mobile:</span>
+                <span className="text-gray-700">+91 {patient.phone}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">street:</span>
+                <span className="text-gray-700">{patient.street}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">city:</span>
+                <span className="text-gray-700">{patient.city}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">state:</span>
+                <span className="text-gray-700">{patient.state}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">postalCode:</span>
+                <span className="text-gray-700">{patient.postalCode}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Email:</span>
+                <span className="text-gray-700">{patient.email}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Location:</span>
+                <span className="text-gray-700">{patient.city}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Languages:</span>
+                <span className="text-gray-700">English, Spanish</span>
+              </li>
+            </ul>
           </div>
-          <Link to={`/update/${patient._id}`} className="bg-blue-500 text-white px-4 py-2 my-4 rounded-md hover:bg-blue-600 transition duration-300">
-            Edit
-          </Link>
         </div>
       </div>
     </div>

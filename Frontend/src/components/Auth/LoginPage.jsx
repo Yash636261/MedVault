@@ -70,6 +70,8 @@ export default function LoginPage() {
         setError("Missing Username or Password");
       } else if (error.response?.status === 401) {
         setError("Credentials are wrong");
+      } else if (error.response?.status === 404) {
+        setError("User not found, Please register first.");
       } else {
         setError("Login Failed");
       }

@@ -24,6 +24,11 @@ function Hero() {
           <Link to="/contact" className="ml-10 max-md:ml-5 hover:text-white">
             contact us
           </Link>
+          {/* {isLoggedIn ? (
+            <Link to="/dashboard" className="ml-10 max-md:ml-5 hover:text-white">
+              Dashboard
+            </Link>
+          ) : null} */}
           {/* <div className="mx-3 hover:text-blue-300">explore</div> */}
         </div>
       </div>

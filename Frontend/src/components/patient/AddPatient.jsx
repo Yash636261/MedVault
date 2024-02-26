@@ -221,8 +221,6 @@ function AddPatient() {
                     <option value="O-">O-</option>
                   </select>
                 </div>
-                {/* Add more input fields for other patient data */}
-
                 <div className="mb-4">
                   <label
                     className="block mb-2 text-sm font-bold text-gray-700"
@@ -427,9 +425,7 @@ function AddPatient() {
                 {errors.postalCode && (
                   <p className="text-xs text-red-500">{errors.postalCode}</p>
                 )}
-                {/* Button to add patient */}
                 <button
-                  onClick={handleSubmit}
                   className="bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-xl py-2 px-4 mt-8 inline-block"
                   type="submit"
                 >

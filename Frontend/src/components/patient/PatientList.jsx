@@ -54,7 +54,7 @@ function PatientList() {
       <div className="mb-8">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-semibold text-gray-600">Patients</h1>
-          <Dropbox />
+          {/* <Dropbox /> */}
         </div>
       </div>
       <div className="flex max-md:flex-col justify-between max-md:items-start md:items-center">
