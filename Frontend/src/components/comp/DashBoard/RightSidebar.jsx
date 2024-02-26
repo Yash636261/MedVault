@@ -16,7 +16,7 @@ function RightSidebar(props) {
     axios
       .get("http://localhost:5000/api/doctor/alldoctor")
       .then((response) => {
-        setDoctors(response.data);
+        setDoctors(response.data.slice(0, 4)); // Only map the first five responses
       })
       .catch((error) => {
         console.error("Error fetching doctor list:", error);
@@ -86,13 +86,14 @@ function RightSidebar(props) {
             </div>
           </div>
         ))}
-        <div className="flex justify-center"> {/* Center the button */}
-          <a
-            href=""
+        <div className="flex justify-center">
+          {" "}
+          <Link
+            to="/doctor"
             className="text-xs py-2  w-full text-center my-2 border-0 rounded-lg bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-black font-semibold"
           >
             MANAGE
-          </a>
+          </Link>
         </div>
       </div>
     </div>

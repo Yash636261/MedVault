@@ -5,14 +5,12 @@ import reports from "../assets/img/dashboard/report2_pbl.png";
 import search from "../assets/img/dashboard/search2.png";
 // import Footer from "../components/landingPage/Footer";
 import eye from "../assets/img/dashboard/eye.png";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const PatientDashboard = (props) => {
     const { id } = useParams();
-  const navigate = useNavigate();
 
-  const [dob, setDob] = useState("01/01/2006");
   const [patient, setPatient] = useState({
     firstName: "",
     lastName: "",

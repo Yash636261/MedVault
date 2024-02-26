@@ -10,12 +10,17 @@ import DashNav from "../comp/DashBoard/DashNav";
 import RightSidebar from "../comp/DashBoard/RightSidebar";
 
 const AdminDashboard = () => {
+  const [toggle, setToggle] = useState(true);
   const [admin, setAdmin] = useState({
     firstName: "",
     lastName: "",
     contact: "",
     email: "",
   });
+
+  const changetoggle = () => {
+    setToggle(!toggle);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,13 +37,30 @@ const AdminDashboard = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setToggle(false);
+      } else {
+        setToggle(true);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="flex justify-evenly bg-white font-poppins">
+    <div className="relative flex justify-evenly bg-white font-poppins">
       {/* <DashNav/> */}
-      <div className="flex text-black bg-gray-100 ">
-        <div className="min-h-screen  transition duration-800 px-2 lg:px-16 pt-24">
-          <h1 className=" text-3xl font-semibold p-2">Welcome</h1>
-          <div className="flex gap-3 py-8">
+      <div className="flex text-black bg-white md:mr-72">
+        <div className="min-h-screen transition duration-800 px-2 lg:px-16 pt-24">
+          <h1 className="text-3xl font-semibold p-2">Welcome</h1>
+          <div className="flex flex-wrap gap-3 py-8">
             <Statscard title="Total" patients="293" />
             <Statscard title="Neurology" patients="49" />
             <Statscard title="Cardiology" patients="28" />
@@ -51,7 +73,7 @@ const AdminDashboard = () => {
               </h1>
               <Dropbox />
             </div>
-            <div className="flex bg-white p-5 my-2 border-0 rounded-lg">
+            <div className="flex max-lg:flex-col-reverse bg-gray-100 p-5 my-2 border-0 rounded-lg">
               <div>
                 <h4 className="text-gray-600 font-semibold text-sm">
                   TOTAL PATIENTS PER DAY
@@ -74,7 +96,7 @@ const AdminDashboard = () => {
                 </div>
                 <a
                   href=""
-                  className="py-2 px-20 border-0 rounded-lg bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-black font-semibold"
+                  className="py-2 px-20 border-0 rounded-lg bg-white text-gray-500 hover:bg-gray-200 hover:text-black font-semibold"
                 >
                   STATS
                 </a>
@@ -85,9 +107,32 @@ const AdminDashboard = () => {
           <PatientList />
         </div>
       </div>
-      <div className=" sticky">
-        <RightSidebar admin={admin} />
-      </div>
+      {window.innerWidth <= 768 && (
+        <button
+          className="absolute md:hidden p-2 bg-white text-black top-2 right-2 rounded-full"
+          onClick={changetoggle}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      )}
+      {toggle && (
+        <div className="fixed right-0 top-0 bottom-0">
+          <RightSidebar admin={admin} />
+        </div>
+      )}
     </div>
   );
 };

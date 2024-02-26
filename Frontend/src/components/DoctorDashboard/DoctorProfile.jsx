@@ -1,18 +1,10 @@
-
-import patient_card_profile from "../../assets/img/dashboard/admin-card-profile.png";
-import name from "../../assets/img/dashboard/patient-profile-name.png";
-import birth from "../../assets/img/dashboard/patient-profile-birth.png";
-import phone from "../../assets/img/dashboard/patient-profile-phone.png";
-import mail from "../../assets/img/dashboard/patient-profile-mail.png";
-import blood from "../../assets/img/dashboard/patient-profile-blood.png";
-import home from "../../assets/img/dashboard/doctor-profile-home.png";
+import Doctor from "../../assets/img/dashboard/doctor_profile.jpeg";
 import { useEffect, useState } from "react";
-import { useParams , Link} from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
-
 const DoctorProfile = () => {
-    const {id} = useParams();
+  const { id } = useParams();
   const [doctor, setDoctor] = useState({
     firstName: "",
     lastName: "",
@@ -37,115 +29,139 @@ const DoctorProfile = () => {
   };
 
   useEffect(() => {
-
-    const fetchData = async () =>{
-        try {
-            const response = await axios.get(`http://localhost:5000/api/doctor/doctor/${id}`)
-            console.log(response.data);
-            setDoctor(response.data)
-        } catch (error) {
-            console.error('Error fetching doctor',error);
-        }
-    }
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/doctor/doctor/${id}`
+        );
+        console.log(response.data);
+        setDoctor(response.data);
+      } catch (error) {
+        console.error("Error fetching doctor", error);
+      }
+    };
 
     fetchData();
-
   }, [id]);
 
   return (
-    <body className="min-h-screen font-poppins col-span-10 py-16 bg-slate-900 px-5">
-      <div className="bg-slate-800 shadow-xl border-0 rounded-lg py-4 px-4 flex justify-between">
-      <h1 className="font-bold text-white text-2xl">Profile</h1>
-      <Link to='/patient' className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Patients</Link>
-        
-      </div>
-      <div className="grid grid-cols-2 mt-16">
-        <div className="p-4 m-8 bg-white shadow-lg w-2/3 mx-auto rounded-md ">
-          <div className="flex justify-center">
-            <img
-              src={patient_card_profile}
-              className="h-40 w-40 rounded-full border-2  p-4 "
-              alt="patient-profile"
-            />
-          </div>
-          <div className="mt-6">
-            <div className="flex ml-8 ">
-              <img src={name} className="h-8 w-8  " />
-              <div className="flex mt-1">
-                <h2 className="ml-2">Dr.</h2>
-                <h2 className="ml-2">{doctor.firstName}</h2>
-                <h2 className="ml-2">{doctor.lastName}</h2>
-              </div>
-            </div>
-            <div className="flex ml-8 mt-4">
-              <img src={birth} className="h-5 w-5 ml-1" />
-              <h2 className="ml-4">{convertDatetoString(doctor.dateOfBirth)}</h2>
-            </div>
-            <div className="flex ml-8 mt-4">
-              <img src={blood} className="h-6 w-6" />
-              <h2 className="ml-4">{doctor.bloodGroup}</h2>
-            </div>
-            <div className="flex ml-8 mt-4">
-              <img src={phone} className="h-6 w-6 " />
-              <h2 className="ml-4">+91</h2>
-              <h2 className="ml-2">{doctor.contact}</h2>
-            </div>
-            <div className="flex ml-8 mt-4">
-              <img src={mail} className="h-6 w-5 " />
-              <h2 className="ml-4 ">{doctor.email}</h2>
-            </div>
+    <div className="h-full p-8 bg-gray-100">
+      <div className="pb-8 bg-white rounded-lg shadow-xl max-w-6xl mx-auto">
+        <div className="w-full h-[250px]">
+          <img
+            src="https://i.stack.imgur.com/vhoa0.jpg"
+            className="w-full h-full rounded-tl-lg rounded-tr-lg"
+            width={500}
+            height={500}
+          />
+        </div>
+        <div className="flex flex-col ml-10 -mt-20 items-left">
+          <img
+            src={Doctor}
+            className="w-40 border-4 border-white rounded-full"
+            width={100}
+            height={100}
+          />
+          <p className="text-2xl">
+            {doctor.firstName} {doctor.lastName}
+          </p>
+
+          <p className="text-gray-700">{doctor.email}</p>
+        </div>
+        <div className="flex-1 flex flex-col items-start justify-end px-8 mt-2">
+          <div className="flex items-center space-x-4 mt-2">
+            <button className="flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+              <span>Edit</span>
+            </button>
           </div>
         </div>
-        <div className="my-2">
-          <div className="p-8 m-2 bg-white shadow-md w-2/3 rounded-md">
-            <div className="flex mt-3">
-              <img src={home} className="h-6 w-6" />
-              <div className="ml-4">
-                <h2>
-                  {`${doctor.street},  ${doctor.city}, ${doctor.state}-${doctor.postalCode}`}
-                </h2>
-              </div>
-            </div>
-          </div>
+      </div>
 
-          <div className="p-8 m-2 bg-white shadow-md w-2/3 rounded-md mt-10">
-            <h1 className="font-bold flex justify-center text-xl">Specialization</h1>
-            <div className="flex mt-4 ">
-              {/* Mapping through doctor's specialization array */}
-              {doctor.specialization.map((specialization, index) => (
-                <span key={index} className="text-lg mr-2">
-                  {specialization}
+      <div className="flex flex-col my-4 space-y-4 2xl:flex-row 2xl:space-y-0 2xl:space-x-4 max-w-6xl mx-auto">
+        <div className="flex flex-col w-full 2xl:w-1/3">
+          <div className="flex-1 p-8 bg-white rounded-lg shadow-xl">
+            <h4 className="text-xl font-bold text-gray-900">Personal Info</h4>
+            <ul className="mt-2 text-gray-700">
+              <li className="flex py-2 border-y">
+                <span className="w-24 font-bold">Full name </span>
+                <span className="text-gray-700">
+                  {doctor.firstName} {doctor.lastName}
                 </span>
-              ))}
-            </div>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Birthday:</span>
+                <span className="text-gray-700">
+                  {convertDatetoString(doctor.dateOfBirth)}
+                </span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">bloodGroup:</span>
+                <span className="text-gray-700"> {doctor.bloodGroup}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Mobile:</span>
+                <span className="text-gray-700">+91 {doctor.contact}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">street:</span>
+                <span className="text-gray-700">{doctor.street}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">city:</span>
+                <span className="text-gray-700">{doctor.city}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">state:</span>
+                <span className="text-gray-700">{doctor.state}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">postalCode:</span>
+                <span className="text-gray-700">{doctor.postalCode}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Email:</span>
+                <span className="text-gray-700">{doctor.email}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Location:</span>
+                <span className="text-gray-700">{doctor.city}</span>
+              </li>
+              <li className="flex py-2 border-b">
+                <span className="w-24 font-bold">Languages:</span>
+                <span className="text-gray-700">English, Spanish</span>
+              </li>
+            </ul>
           </div>
-          {/* <div className="p-8 m-2 bg-white shadow-md w-2/3 rounded-md mt-10">
-            <h1 className="font-bold flex justify-center text-xl">
-              Hospital Details
-            </h1>
-            <div className="flex mt-4 ">
-              <img src={hospital} className="h-6 w-6" />
-              <h1 className="ml-4"> {doctor.org}</h1>
-            </div>
-
-            <div className="flex mt-3">
-              <img src={hospital_contact} className="w-5 h-5 " />
-
-              <h1 className="ml-4">{doctor.orgNumber}</h1>
-            </div>
-
-            <div className="flex mt-6">
-              <img src={address} className="h-7 w-8" />
-              <div className="ml-4 ">
-                <h2>
-                  {`${doctor.orgAddress.building},  ${doctor.orgAddress.city},  ${doctor.orgAddress.taluka},  ${doctor.orgAddress.district},  ${doctor.orgAddress.state}-  ${doctor.orgAddress.pincode}`}
-                </h2>
-              </div>
-            </div>
-          </div> */}
+        </div>
+        <div className="flex flex-col w-full 2xl:w-2/3">
+          <div className="flex-1 p-8 bg-white rounded-lg shadow-xl">
+            <h4 className="text-xl font-bold text-gray-900">About</h4>
+            <p className="mt-2 text-gray-700">
+              I'm a software engineer on a mission to bring innovative ideas to
+              life. With a solid background in Computer Science and a knack for
+              problem-solving, I dive headfirst into every project. Whether it's
+              coding or collaborating with teams, I thrive in dynamic
+              environments. Outside of work, you'll catch me exploring new tech
+              trends, traveling to exciting destinations, and capturing moments
+              through my lens as a passionate photographer. Can't wait to
+              connect and share ideas!
+            </p>
+          </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 };
 

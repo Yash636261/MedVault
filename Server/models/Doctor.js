@@ -61,6 +61,9 @@ const doctorSchema = new mongoose.Schema({
   }
 });
 
+doctorSchema.pre("save", async function () {
+  this.password = await bcrypt.hash(this.password, 12);
+});
 
 const Doctor = mongoose.model("Doctor", doctorSchema);
 

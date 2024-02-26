@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Introcard from "../../../components/comp/cards/Introcard";
-import img from "../../../assets/heroimage.png";
 import access from "../../../assets/access.png";
 import security from "../../../assets/security.png";
 import auth from "../../../assets/auth.png";

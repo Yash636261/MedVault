@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useState, useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import profile from "../../assets/img/landingPage/profile.png";
-import login from "../../assets/d1.png";
+import loginimg from "../../assets/d1.png";
 import back from "../../assets/img/dashboard/logout.png";
-import ReactLoading from "react-loading";
+import Cookies from "universal-cookie";
 import axios from "axios";
+import { AuthContext } from "./AuthContext";
 
 export default function LoginPage() {
+  const cookies = new Cookies();
+  const {login} = useContext(AuthContext);
+
   const [selectedOption, setSelectedOption] = useState("admin");
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -30,64 +33,52 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (selectedOption === "admin") {
-      try {
-        const response = await axios.post(
+    try {
+      if (selectedOption === "admin") {
+        await axios.post(
           `http://localhost:5000/api/auth/login`,
           { ...formData }
         );
-
-        // if (response) {
-        //   if (response.role === "user") {
-        //     // Redirect to /user
-        //     navigate("/user");
-        //   } else if (response.role === "admin") {
-        //     // Redirect to /admin
         navigate("/admin");
-        //   } else {
-        //     // Handle other roles or scenarios as needed
-        //     console.error("Invalid role in response:", response.role);
-        //   }
-        // }
-      } catch (error) {
-        console.log(error);
-        if (!error?.response) {
-          setError("No server Response");
-        } else if (error.response?.status === 400) {
-          setError("Missing Username or Password");
-        } else if (error.response?.status === 401) {
-          setError("Credentials are wrong");
-        } else {
-          setError("Login Failed");
-        }
-      }
-    }
-
-    if (selectedOption === "doctor") {
-      try {
+      } else if (selectedOption === "doctor") {
         const response = await axios.post(
           `http://localhost:5000/api/auth/doclogin`,
-          { ...formData }
+          { ...formData },
+          {
+            withCredentials: true,
+          }
         );
-        navigate("/patient");
-      } catch (error) {
-        console.log(error);
-        if (!error?.response) {
-          setError("No server Response");
-        } else if (error.response?.status === 400) {
-          setError("Missing Username or Password");
-        } else if (error.response?.status === 401) {
-          setError("Credentials are wrong");
-        } else {
-          setError("Login Failed");
+
+        if (response) {
+          console.log(response.data.token);
+          localStorage.setItem("authToken", response.data.token);
+          login(response.data.token);
+
+          cookies.set("TOKEN", response.data.token, {
+            path: "/",
+          });
         }
+        console.log(cookies.get("TOKEN"));
+        const id = response.data.doctor._id;
+        navigate(`/doctorDashboard/${id}`);
+      }
+    } catch (error) {
+      console.log(error);
+      if (!error.response) {
+        setError("No server Response");
+      } else if (error.response?.status === 400) {
+        setError("Missing Username or Password");
+      } else if (error.response?.status === 401) {
+        setError("Credentials are wrong");
+      } else if (error.response?.status === 404) {
+        setError("User not found, Please register first.");
+      } else {
+        setError("Login Failed");
       }
     }
-
     setFormData({
       email: "",
       password: "",
-      timeTravelerID: "", // Reset the Time Traveler ID field
     });
   };
 
@@ -98,7 +89,7 @@ export default function LoginPage() {
           <img src={back} className="w-4 h-4" alt="" />
           <p className="mx-1 text-gray-700">Back to home</p>
         </Link>
-        <h2 className="text-3xl font-semibold mt-8">Wellcome Back!</h2>
+        <h2 className="text-3xl font-semibold mt-8">Welcome Back!</h2>
         <h4 className="text-sm font-medium  text-gray-500">
           Please enter log in details below
         </h4>
@@ -163,7 +154,7 @@ export default function LoginPage() {
         </form>
       </div>
       <div className="max-md:hidden">
-        <img src={login} className="border-0 rounded-2xl" alt="" />
+        <img src={loginimg} className="border-0 rounded-2xl" alt="" />
       </div>
     </div>
   );

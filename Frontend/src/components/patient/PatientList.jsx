@@ -50,34 +50,34 @@ function PatientList() {
   );
 
   return (
-    <div className="min-h-screen py-14 px-5 bg-gray-100">
+    <div className="min-h-screen py-14 px-5 bg-white">
       <div className="mb-8">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-semibold text-gray-600">Patients</h1>
-          <Dropbox />
+          {/* <Dropbox /> */}
         </div>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex max-md:flex-col justify-between max-md:items-start md:items-center">
         <input
           type="text"
           placeholder="Search by name"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="bg-white text-gray-800 px-4 py-2 rounded-md  w-full max-w-md"
+          className="bg-gray-100 text-gray-800 px-4 py-2 rounded-mdw-full max-w-md"
         />
 
         <Link
           to="/addpatient"
-          className=" bg-blue-400 text-black px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white transition duration-300"
+          className=" bg-blue-400 text-black max-md:my-2 px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white transition duration-300"
         >
-          Add Patient
+          Add-Patient
         </Link>
       </div>
       <div className="w-full">
         {filteredPatients.map((patient,index) => (
           <div
             key={patient._id}
-            className="flex justify-between items-center w-full px-4 py-6 my-6 bg-white rounded-lg hover:shadow-md"
+            className="flex justify-between items-center w-full px-4 py-6 my-6 bg-gray-100 rounded-lg hover:shadow-md"
           >
             <div className="flex items-center w-48 overflow-hidden">
               <Link to={`/Profile/${patient._id}`} className="">
@@ -97,7 +97,7 @@ function PatientList() {
               </div>
             </div>
 
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center max-md:hidden">
               <img
                 src={history}
                 alt=""
@@ -113,7 +113,7 @@ function PatientList() {
               </div>
             </div>
 
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center max-md:hidden">
               <img
                 src={history}
                 alt=""

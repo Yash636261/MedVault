@@ -1,7 +1,7 @@
 const { getalldoctor, getDoctorById, addDoctor, updateDoctor,deleteDoctor } = require("../controllers/DoctorController")
 const router = require("express").Router();
 
-router.post("/adddoctor", addDoctor);
+// router.post("/adddoctor", addDoctor);
 router.get("/alldoctor",getalldoctor);
 router.get("/doctor/:doctorId", getDoctorById);
 

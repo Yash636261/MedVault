@@ -7,7 +7,7 @@ function Introcard(props) {
       style={{ height: `${props.height}px` }}
     >
       <img src={props.image} className=" object-cover w-full h-full" alt="" />
-      <h2 className="absolute -bottom-16 pb-8 backdrop-blur-sm mx-auto w-full text-white text-center text-xl font-semibold mb-2 transition duration-500 group-hover:-translate-y-10">
+      <h2 className="absolute -bottom-16 pb-8 backdrop-blur-sm bg-gradient-to-b from-transparent to-black mx-auto w-full text-white text-center text-xl font-semibold mb-2 transition duration-500 group-hover:-translate-y-10">
         {props.title}
       </h2>
     </div>

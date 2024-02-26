@@ -1,15 +1,12 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef,useContext } from "react";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import { AuthContext } from "./Auth/AuthContext";
 
 function Navbar() {
-  const { user, loginWithRedirect, logout } = useAuth0();
-  console.log("current user:", user);
-
   const [toggle, setToggle] = useState(false);
   const [menu, setMenu] = useState(false);
   const dropdownRef = useRef(null);
+  const { isLoggedIn} = useContext(AuthContext);
 
   const changeToggle = () => {
     setToggle(!toggle);
@@ -36,6 +33,10 @@ function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    console.log("isLoggedIn:", isLoggedIn);
+  }, [isLoggedIn]);
+
   return (
     <div className="fixed w-full z-10">
       <div className="px-5 flex justify-between items-center bg-black text-white h-12">
@@ -52,12 +53,14 @@ function Navbar() {
             <Link to="/" className="mx-3 hover:text-blue-300">
               Home
             </Link>
-            {/* <a to="/about" className="mx-3 hover:text-blue-300">
-              about
-            </a> */}
             <Link to="/contact" className="mx-3 hover:text-blue-300">
               contact us
             </Link>
+            {isLoggedIn ?(
+            <Link to="/" className="mx-3 hover:text-blue-300">
+              Dashboard
+            </Link>
+            ):( <Link to="/login" className="mx-3 hover:text-blue-300"> login </Link>)}
             {/* <div className="mx-3 hover:text-blue-300">explore</div> */}
           </div>
         </div>
