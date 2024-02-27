@@ -36,13 +36,13 @@ export default function LoginPage() {
     try {
       if (selectedOption === "admin") {
         await axios.post(
-          `http://localhost:5000/api/auth/login`,
+          `https://medvault-khkb.onrender.com/api/auth/login`,
           { ...formData }
         );
         navigate("/admin");
       } else if (selectedOption === "doctor") {
         const response = await axios.post(
-          `http://localhost:5000/api/auth/doclogin`,
+          `https://medvault-khkb.onrender.com/api/auth/doclogin`,
           { ...formData },
           {
             withCredentials: true,
