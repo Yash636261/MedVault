@@ -35,7 +35,7 @@ app.use(express.static("public"));
 
 // Routes
 app.get("/", (req, res) => {
-  res.send('<h1>Hello from the server!</h1> <a href="/api/v1/patients">patients route</a>');
+  res.send('good morning!');
 });
 
 app.use("/api/auth",authRoutes);
@@ -43,7 +43,7 @@ app.use("/api/patient", PatientRouter); // Updated route path
 app.use("/api/doctor",DoctorRouter);
 app.use("/api/admin",AdminRouter);
 app.use(logoutRoute);
-// app.use(notFoundMiddleware);
+app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
 const port = process.env.PORT || 5000;
