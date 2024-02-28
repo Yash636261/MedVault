@@ -21,7 +21,7 @@ function PatientList() {
   useEffect(() => {
     // Fetch patient data from the backend
     axios
-      .get("http://localhost:5000/api/patient/allpatients")
+      .get("https://medvault-khkb.onrender.com/api/patient/allpatients")
       .then((response) => {
         setPatients(response.data);
       });
@@ -31,10 +31,10 @@ function PatientList() {
     try {
       console.log(id);
       await axios.delete(
-        `http://localhost:5000/api/patient/deletepatient/${id}`
+        `https://medvault-khkb.onrender.com/api/patient/deletepatient/${id}`
       );
       const response = await axios.get(
-        "http://localhost:5000/api/patient/allpatients"
+        "https://medvault-khkb.onrender.com/api/patient/allpatients"
       );
       setPatients(response.data);
       console.log("patient deleted:", response.data);

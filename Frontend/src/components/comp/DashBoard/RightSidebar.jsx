@@ -14,7 +14,7 @@ function RightSidebar(props) {
   }
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/doctor/alldoctor")
+      .get("https://medvault-khkb.onrender.com/api/doctor/alldoctor")
       .then((response) => {
         setDoctors(response.data.slice(0, 4)); // Only map the first five responses
       })

@@ -9,7 +9,7 @@ const DoctorList = () => {
   
     useEffect(() => {
       axios
-        .get("http://localhost:5000/api/doctor/alldoctor")
+        .get("https://medvault-khkb.onrender.com/api/doctor/alldoctor")
         .then((response) => {
           setDoctors(response.data);
         })
@@ -23,7 +23,7 @@ const DoctorList = () => {
         const confirmed = window.confirm("Are you sure you want to delete this doctor?");
         if (!confirmed) return;
   
-        const response = await axios.delete(`http://localhost:5000/api/doctor/deletedoctor/${id}`);
+        const response = await axios.delete(`https://medvault-khkb.onrender.com/api/doctor/deletedoctor/${id}`);
         if (response.status === 200) {
           const updatedDoctors = doctors.filter((doctor) => doctor._id !== id);
           setDoctors(updatedDoctors);

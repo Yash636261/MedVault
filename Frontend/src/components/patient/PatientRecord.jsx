@@ -13,7 +13,7 @@ const PatientRecord = () => {
     const fetchpatient = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/patient/getpatient/${id}`
+          `https://medvault-khkb.onrender.com/api/patient/getpatient/${id}`
         );
         setPatient(response.data);
       } catch (error) {

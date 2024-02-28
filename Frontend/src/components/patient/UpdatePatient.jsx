@@ -22,7 +22,7 @@ function UpdatePatient() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/patient/getpatient/${id}`);
+        const response = await axios.get(`https://medvault-khkb.onrender.com/api/patient/getpatient/${id}`);
         console.log(response.data);
         setPatient(response.data);
       } catch (error) {
@@ -45,7 +45,7 @@ function UpdatePatient() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Send a PUT request to update the patient's data
-    axios.put(`http://localhost:5000/api/patient/updatepatient/${id}`, patient).then((response) => {
+    axios.put(`https://medvault-khkb.onrender.com/api/patient/updatepatient/${id}`, patient).then((response) => {
       // Handle success or errors here
       console.log("Patient updated:", response.data);
       window.history.back();

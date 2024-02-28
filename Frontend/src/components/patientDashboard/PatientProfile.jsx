@@ -27,7 +27,7 @@ const PatientProfile = (props) => {
     const fetchData = async () => {
       try {
         console.log('hi');
-        const response = await axios.get(`http://localhost:5000/api/patient/getpatient/${id}`);
+        const response = await axios.get(`https://medvault-khkb.onrender.com/api/patient/getpatient/${id}`);
         console.log(response.data);
         setPatient(response.data);
       } catch (error) {

@@ -17,7 +17,7 @@ function AddMedicalRecord() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/patient/getpatient/${id}`
+          `https://medvault-khkb.onrender.com/api/patient/getpatient/${id}`
         );
         console.log(response.data);
         setPatient(response.data);
@@ -51,7 +51,7 @@ function AddMedicalRecord() {
     // Send updated patient data to the server
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/patient/updatepatient/${id}`,
+        `https://medvault-khkb.onrender.com/api/patient/updatepatient/${id}`,
         updatedPatient
       );
       console.log("Patient updated:", response.data);

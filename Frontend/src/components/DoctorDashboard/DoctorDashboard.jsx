@@ -39,7 +39,7 @@ const DoctorDashboard = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/doctor/doctor/${id}`
+          `https://medvault-khkb.onrender.com/api/doctor/doctor/${id}`
         );
         setDoctor(response.data);
       } catch (error) {

@@ -26,7 +26,7 @@ const AdminDashboard = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/admin/getadmin"
+          "https://medvault-khkb.onrender.com/api/admin/getadmin"
         );
         setAdmin(response.data);
       } catch (error) {

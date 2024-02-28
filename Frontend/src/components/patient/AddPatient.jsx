@@ -99,7 +99,7 @@ function AddPatient() {
       try {
         const patientData = { ...patient, diseases: diseaseList };
         const response = await axios.post(
-          "http://localhost:5000/api/patient/addpatient",
+          "https://medvault-khkb.onrender.com/api/patient/addpatient",
           patientData
         );
         setPatient(initialState);

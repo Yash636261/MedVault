@@ -105,7 +105,7 @@ function AddDoctor() {
       if (validateForm()) {
         try {
           const response = await axios.post(
-            "http://localhost:5000/api/auth/adddoctor",
+            "https://medvault-khkb.onrender.com/api/auth/adddoctor",
             doctor
           );
           setDoctor(initialDoctorState);
