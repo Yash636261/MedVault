@@ -41,9 +41,25 @@ MedVault is an advanced patient data management system designed to ensure data s
    
 3. **Open in Browser**: Visit `http://localhost:5173/` in your browser to view the application.
 
+## Technologies
+
+The MedVault application utilizes the following technologies:
+
+- React: [Link to React](https://reactjs.org/)
+- Node.js: [Link to Node.js](https://nodejs.org/)
+- MongoDB: [Link to MongoDB](https://www.mongodb.com/)
+
+For more information on each technology and their usage, please refer to the respective official websites or documentation.
+
 ## Contributing
 
-Contributions are welcome! If you have any ideas for new features, bug fixes, or improvements, feel free to open an issue or submit a pull request.
+Contributions to this project are welcome. If you would like to contribute, please follow these guidelines:
+
+- Fork the repository and create your branch.
+- Make your changes and ensure they are appropriately documented.
+- Submit a pull request describing the changes you've made.
+
+Please adhere to good coding practices and maintain a clean commit history.
 
 ## License
 
