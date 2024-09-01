@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Dropbox from "../comp/DashBoard/Dropbox";
+import Button from "../comp/Button";
 import more from "../../assets/more.png";
 import profile from "../../assets/img/landingPage/profile.png";
 import history from "../../assets/img/dashboard/history_patient.png";
@@ -65,13 +66,15 @@ function PatientList() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="bg-gray-100 text-gray-800 px-4 py-2 rounded-mdw-full max-w-md"
         />
+          <Button link='/addpatient' name='Add-Patient' />
 
-        <Link
+
+        {/* <Link
           to="/addpatient"
           className=" bg-blue-400 text-black max-md:my-2 px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white transition duration-300"
         >
           Add-Patient
-        </Link>
+        </Link> */}
       </div>
       <div className="w-full">
         {filteredPatients.map((patient,index) => (

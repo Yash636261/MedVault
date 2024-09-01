@@ -1,13 +1,13 @@
 // import Footer from "../landingPage/Footer";
 
 import profile from "../../assets/img/landingPage/profile.png";
-import { useNavigate,useParams ,Link } from "react-router-dom";
-import { useEffect, useState} from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Button from "../comp/Button";
 import axios from "axios";
 
-
 const PatientProfile = (props) => {
-    const { id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [patient, setPatient] = useState({
     firstName: "",
@@ -26,34 +26,36 @@ const PatientProfile = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log('hi');
-        const response = await axios.get(`https://medvault-khkb.onrender.com/api/patient/getpatient/${id}`);
+        console.log("hi");
+        const response = await axios.get(
+          `https://medvault-khkb.onrender.com/api/patient/getpatient/${id}`
+        );
         console.log(response.data);
         setPatient(response.data);
       } catch (error) {
-        console.error('Error fetching patient data:', error);
+        console.error("Error fetching patient data:", error);
       }
     };
-  
+
     fetchData();
   }, [id]);
-//   useEffect(() => {
-//     async function getpatient() {
-//       const res = await fetch("/getpatient");
-//       const data = await res.json();
-//       if (data.AuthError) {
-//         props.settoastCondition({
-//           status: "info",
-//           message: "Please Login to proceed!!!",
-//         });
-//         props.setToastShow(true);
-//         navigate("/");
-//       } else {
-//         setPatient(data.patient);
-//       }
-//     }
-//     getpatient();
-//   }, []);
+  //   useEffect(() => {
+  //     async function getpatient() {
+  //       const res = await fetch("/getpatient");
+  //       const data = await res.json();
+  //       if (data.AuthError) {
+  //         props.settoastCondition({
+  //           status: "info",
+  //           message: "Please Login to proceed!!!",
+  //         });
+  //         props.setToastShow(true);
+  //         navigate("/");
+  //       } else {
+  //         setPatient(data.patient);
+  //       }
+  //     }
+  //     getpatient();
+  //   }, []);
 
   const convertDatetoString = (dateString) => {
     let date = new Date(dateString);
@@ -64,8 +66,6 @@ const PatientProfile = (props) => {
   };
 
   return (
-    
-    
     <div className="h-full p-8 bg-gray-100">
       <div className="pb-8 bg-white rounded-lg shadow-xl max-w-6xl mx-auto">
         <div className="w-full h-[250px]">
@@ -91,21 +91,7 @@ const PatientProfile = (props) => {
         </div>
         <div className="flex-1 flex flex-col items-start justify-end px-8 mt-2">
           <div className="flex items-center space-x-4 mt-2">
-            <Link to={`/update/${patient._id}`} className="flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-              <span>Edit</span>
-            </Link>
+            <Button link={`/update/${patient._id}`} name="Edit" />
           </div>
         </div>
       </div>

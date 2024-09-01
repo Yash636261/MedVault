@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import Button from "../comp/Button";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const PatientRecord = () => {
   const [patient, setPatient] = useState({
@@ -29,7 +30,7 @@ const PatientRecord = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
   const formatMonth = (dateString) => {
-    const options = { year: "numeric", month: "long"};
+    const options = { year: "numeric", month: "long" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
@@ -37,13 +38,7 @@ const PatientRecord = () => {
     <div className="max-w-md mx-auto bg-white border-0 rounded-xl overflow-hidden md:max-w-4xl m-5">
       <div className="flex justify-between mt-10 border-0 px-5 py-2 rounded-md bg-white shadow-lg">
         <h1 className="text-2xl font-bold ">Patient Record</h1>
-
-        <Link
-          to={`/addRecord/${id}`}
-          className="bg-blue-500 text-white px-4 py-2 mr-2 rounded-md hover:bg-blue-600 transition duration-300"
-        >
-          Add Record
-        </Link>
+        <Button link={`/addRecord/${id}`} name="Add Record" />
       </div>
       <div className="mx-auto max-w-xl">
         {patient.diseases && patient.diseases.length >= 1 ? (
@@ -57,7 +52,9 @@ const PatientRecord = () => {
                   <p className="text-4xl font-bold text-white">
                     {formatDate(disease.date)}th
                   </p>
-                  <p className="text-sm text-white">{formatMonth(disease.date)}</p>
+                  <p className="text-sm text-white">
+                    {formatMonth(disease.date)}
+                  </p>
                 </div>
                 <div className="ml-4">
                   <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
@@ -73,7 +70,7 @@ const PatientRecord = () => {
           ))
         ) : (
           <p className="mx-auto my-10">
-            No records found for {" "} 
+            No records found for{" "}
             <span className=" font-bold capitalize">
               {patient.firstName} {patient.lastName}
             </span>

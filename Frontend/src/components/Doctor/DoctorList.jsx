@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import doctorIcon from "../../assets/img/dashboard/admin-card-profile.png"; // Replace with your actual doctor icon image path
+import Button from "../comp/Button";
 
 const DoctorList = () => {
     const [doctors, setDoctors] = useState([]);
@@ -46,12 +47,7 @@ const DoctorList = () => {
       <div className="min-h-screen py-12 px-5 bg-gray-100 text-gray-800">
         <div className="flex justify-between mt-10 border-0 px-5 py-2 rounded-md bg-white shadow-lg">
           <h1 className="text-2xl font-bold">Doctor List</h1>
-          <Link
-            to="/adddoctor"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
-          >
-            Add Doctor
-          </Link>
+          <Button link='/adddoctor' name='Add Doctor' />
         </div>
         <div className="py-10">
           <input

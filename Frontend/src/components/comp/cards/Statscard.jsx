@@ -4,7 +4,7 @@ import more from "../../../assets/more.png";
 
 function Statscard(props) {
   return (
-    <div className=" hover:shadow-md relative border-0 rounded-lg px-6 py-4 bg-gray-100 transition duration-200 hover:bg-[#63B3AF]  hover:text-white w-52">
+    <div className=" hover:shadow-md relative border-0 rounded-lg px-6 py-4 bg-gray-100 transition duration-200 hover:bg-[#63B3AF]  hover:text-white w-52 max-sm:w-36 max-lg:w-40">
     
       <img className="absolute right-2 top-2 w-4 " src={more} alt="" />
 

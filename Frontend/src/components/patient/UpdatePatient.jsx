@@ -212,7 +212,6 @@ function UpdatePatient() {
             onChange={handleChange}
           />
         </div>
-        {/* Button to add patient */}
         <button
           onClick={handleSubmit}
           className="border-0 my-10 py-2 px-3 text-white font-semibold rounded-xl transition duration-200 bg-blue-700 hover:bg-blue-800 hover:shadow-lg"

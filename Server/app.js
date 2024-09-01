@@ -46,7 +46,7 @@ app.use(logoutRoute);
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5005;
 
 const start = async () => {
   try {
