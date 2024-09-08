@@ -77,7 +77,7 @@ function Hero() {
             </h2>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Empowering Healthcare: Your Reliable Partner in Secure Health Data
-              Management
+              Management.
             </h1>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
               {!isLoggedIn && (
